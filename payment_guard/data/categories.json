@@ -1,0 +1,485 @@
+{
+  "checked": "2026-10-16",
+  "stances": {
+    "prohibited": "prohibited",
+    "restricted": "restricted: needs payment history or conditions",
+    "review": "needs a manual review",
+    "allowed": "allowed",
+    "unknown": "not addressed in its published policy"
+  },
+  "categories": {
+    "human_services": {
+      "label": "Services delivered by a person (consulting, coaching, tutoring, agency work)",
+      "label_zh": "真人提供的服务（咨询、教练、辅导、代做）",
+      "pattern": "\\b(?:book (?:a|your) (?:call|consultation|session)|(?:our|offer|provide) (?:consulting|consultancy|agency|coaching) services|consulting services|done[- ]for[- ]you (?:services?|setup)|hire (?:us|our team)|1[:-]1 (?:coaching|calls?|sessions?)|coaching (?:sessions?|calls?|programs?|packages?)|tutoring sessions?|remote advisory)\\b",
+      "stance": {
+        "stripe": "allowed",
+        "paddle": "prohibited",
+        "lemonsqueezy": "prohibited",
+        "creem": "restricted",
+        "dodo": "prohibited",
+        "polar": "prohibited",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      },
+      "note": "Stripe Managed Payments excludes professional services; software that books or matches people is fine on Waffo",
+      "look_only": true,
+      "note_zh": "Stripe Managed Payments 不包括专业服务；在 Waffo 上，帮人预约或撮合的软件没问题"
+    },
+    "physical_goods": {
+      "label": "Physical goods that ship",
+      "label_zh": "需要发货的实体商品",
+      "pattern": "\\b(?:free shipping|ships? (?:to|within|worldwide|in \\d)|shipping (?:costs?|fees?|rates?)|physical (?:products?|goods|copy|copies)|delivered to your (?:door|doorstep)|in stock)\\b",
+      "stance": {
+        "stripe": "allowed",
+        "paddle": "prohibited",
+        "lemonsqueezy": "prohibited",
+        "creem": "prohibited",
+        "dodo": "unknown",
+        "polar": "unknown",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "marketplace": {
+      "label": "A marketplace, or payouts from merchants to customers (cashback, rebates)",
+      "label_zh": "平台型市场，或商家给用户返现、返利",
+      "pattern": "\\b(?:multi-vendor|become a (?:seller|vendor)|sell (?:on|in) our marketplace|vendors? (?:earn|get paid)|creators? earn \\d|cashback|rebates?)\\b",
+      "stance": {
+        "stripe": "review",
+        "paddle": "prohibited",
+        "lemonsqueezy": "prohibited",
+        "creem": "prohibited",
+        "dodo": "prohibited",
+        "polar": "prohibited",
+        "waffo": "unknown",
+        "gumroad": "unknown"
+      },
+      "note": "on Stripe a marketplace runs on Stripe Connect",
+      "look_only": true
+    },
+    "adult": {
+      "label": "Adult or sexual content, including AI-generated",
+      "label_zh": "成人或色情内容（含 AI 生成）",
+      "pattern": "\\b(?:nsfw|porn\\w*|nude|nudity|erotic\\w*|adult content|xxx|onlyfans|hentai)\\b",
+      "stance": {
+        "stripe": "prohibited",
+        "paddle": "prohibited",
+        "lemonsqueezy": "prohibited",
+        "creem": "prohibited",
+        "dodo": "prohibited",
+        "polar": "prohibited",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "ai_companion": {
+      "label": "AI companion, girlfriend or relationship chat",
+      "label_zh": "AI 陪伴、AI 女友或恋爱聊天",
+      "pattern": "\\b(?:ai (?:girlfriend|boyfriend|companion|waifu|lover)|virtual (?:girlfriend|boyfriend)|companion chat|romantic ai|roleplay chat)\\b",
+      "stance": {
+        "stripe": "review",
+        "paddle": "unknown",
+        "lemonsqueezy": "prohibited",
+        "creem": "prohibited",
+        "dodo": "prohibited",
+        "polar": "prohibited",
+        "waffo": "restricted",
+        "gumroad": "unknown"
+      },
+      "note": "Waffo takes fictional and anime characters on every channel; real-looking human likenesses on cards only"
+    },
+    "deepfake": {
+      "label": "Face swap, deepfake or voice cloning",
+      "label_zh": "换脸、深度伪造或声音克隆",
+      "pattern": "\\b(?:face ?swap\\w*|swap faces|deep ?fakes?|face manipulation|voice clon\\w*|clone (?:any|anyone'?s?) voice)\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "prohibited",
+        "lemonsqueezy": "unknown",
+        "creem": "prohibited",
+        "dodo": "prohibited",
+        "polar": "prohibited",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "ai_media": {
+      "label": "AI image or video generation",
+      "label_zh": "AI 图片或视频生成",
+      "pattern": "\\b(?:text[- ]to[- ](?:image|video)|image[- ]to[- ]video|ai (?:image|video|photo|art|avatar|headshot|portrait)s? generat\\w*|(?:image|video|photo|art|avatar|headshot) generator)\\b",
+      "stance": {
+        "stripe": "allowed",
+        "paddle": "review",
+        "lemonsqueezy": "unknown",
+        "creem": "restricted",
+        "dodo": "review",
+        "polar": "review",
+        "waffo": "restricted",
+        "gumroad": "unknown"
+      },
+      "note": "Paddle restricts realistic human-face generation; Creem wants its moderation running in production; Waffo wants the real model names and a moderation workflow published",
+      "note_zh": "Paddle 限制逼真人脸生成；Creem 要求审核接口在生产环境运行；Waffo 要求公开写明实际模型和审核流程"
+    },
+    "ai_text": {
+      "label": "AI text, chat or voice generation",
+      "label_zh": "AI 文本、对话或语音生成",
+      "pattern": "\\b(?:ai[- ](?:writer|copywriter|chat ?bot|voice ?over|song ?writer)s?|ai[- ](?:writing|copywriting|essay|story|script|voice|music|song|lyrics?|text|chat)[- ](?:generat\\w*|writer|tool|assistant|app|builder|maker)s?|(?:text|essay|story|script|voice|music|song|lyrics|copy)[- ]generat(?:or|ion)s?|ai[- ]powered (?:writ\\w*|chat\\w*)|(?:build|create) (?:your own |an? )?ai chatbots?)\\b",
+      "stance": {
+        "stripe": "allowed",
+        "paddle": "allowed",
+        "lemonsqueezy": "allowed",
+        "creem": "restricted",
+        "dodo": "review",
+        "polar": "review",
+        "waffo": "restricted",
+        "gumroad": "unknown"
+      },
+      "look_only": true,
+      "note": "Dodo and Polar review AI content generation tools (text, image, video, voice); Creem lists generative AI products as restricted, with image and video tools as its examples; Waffo takes AI-generated content after an extra review if the content says it is AI-generated; Paddle restricts only face, likeness and voice-impersonation generation, and Lemon Squeezy bans NSFW chatbots",
+      "note_zh": "Dodo 和 Polar 对 AI 内容生成工具（文本、图片、视频、语音）要人工审核；Creem 把生成式 AI 产品列为受限，举的例子是图片和视频工具；Waffo 接受 AI 生成内容，但要额外审核并标明内容由 AI 生成；Paddle 只限制人脸、肖像和声音冒充类生成，Lemon Squeezy 禁止色情聊天机器人"
+    },
+    "ai_account_resale": {
+      "label": "Topping up or reselling other AI services' accounts, memberships or API access",
+      "label_zh": "代充、代开或转售他人的 AI 账号、会员或 API",
+      "pattern": "\\b(?:(?:chatgpt|gpt|claude|gemini|midjourney) (?:plus|pro|team)? ?(?:top[- ]?ups?|accounts? for sale|shared accounts?|recharge)|api (?:relay|reseller|credits? resale)|cheap (?:gpt|openai|claude) api|openai[- ]compatible api key)\\b|代充|代开|中转 ?api",
+      "stance": {
+        "stripe": "prohibited",
+        "paddle": "restricted",
+        "lemonsqueezy": "unknown",
+        "creem": "restricted",
+        "dodo": "prohibited",
+        "polar": "review",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      },
+      "note": "Stripe bans reselling a service without adding value; Creem restricts API resellers; Dodo bans reselling AI APIs without the rights"
+    },
+    "license_resale": {
+      "label": "Resale rights (PLR, MRR), license keys or unlicensed content",
+      "label_zh": "转售权内容（PLR、MRR）、激活码或无授权内容",
+      "pattern": "\\b(?:plr|mrr|private label rights|master resell rights|resell(?:ing)? rights|cheap (?:windows|office) keys?|cd[- ]keys?|license keys? (?:for sale|cheap))\\b",
+      "stance": {
+        "stripe": "prohibited",
+        "paddle": "prohibited",
+        "lemonsqueezy": "prohibited",
+        "creem": "prohibited",
+        "dodo": "prohibited",
+        "polar": "prohibited",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "gambling": {
+      "label": "Gambling, betting, lotteries or loot boxes",
+      "label_zh": "博彩、下注、彩票或开箱",
+      "pattern": "\\b(?:casino|gambl\\w*|betting|sportsbook|slot machines?|lotter(?:y|ies)|loot ?box\\w*)\\b",
+      "stance": {
+        "stripe": "prohibited",
+        "paddle": "prohibited",
+        "lemonsqueezy": "restricted",
+        "creem": "prohibited",
+        "dodo": "unknown",
+        "polar": "prohibited",
+        "waffo": "restricted",
+        "gumroad": "unknown"
+      }
+    },
+    "crypto": {
+      "label": "Crypto, NFTs or tokens",
+      "label_zh": "加密货币、NFT 或代币",
+      "pattern": "\\b(?:cryptocurrenc(?:y|ies)|crypto (?:trading|exchange|wallets?|tokens?|coins?|payments?|projects?|signals?|portfolio)|nfts?|bitcoin|ethereum|token sale|airdrops?|defi|memecoins?|web3 wallets?)\\b",
+      "stance": {
+        "stripe": "restricted",
+        "paddle": "unknown",
+        "lemonsqueezy": "prohibited",
+        "creem": "prohibited",
+        "dodo": "prohibited",
+        "polar": "prohibited",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      },
+      "note": "Stripe bans mining, ICOs and NFT resale and restricts exchanges and wallets"
+    },
+    "trading_tools": {
+      "label": "Trading bots, signals or trade automation",
+      "label_zh": "交易机器人、喊单信号或自动交易",
+      "pattern": "\\b(?:trading bots?|auto[- ]?trad\\w*|trading signals?|copy trading|forex (?:bots?|signals?|robots?)|algo(?:rithmic)? trading)\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "prohibited",
+        "lemonsqueezy": "restricted",
+        "creem": "prohibited",
+        "dodo": "prohibited",
+        "polar": "prohibited",
+        "waffo": "restricted",
+        "gumroad": "unknown"
+      }
+    },
+    "get_rich": {
+      "label": "Get-rich or income-claim offers",
+      "label_zh": "暴富、被动收入或收入承诺类",
+      "pattern": "\\b(?:get rich|passive income|make money online|guaranteed (?:returns?|profits?|income)|wealth (?:course|system|blueprint)|financial freedom)\\b",
+      "stance": {
+        "stripe": "prohibited",
+        "paddle": "prohibited",
+        "lemonsqueezy": "restricted",
+        "creem": "unknown",
+        "dodo": "prohibited",
+        "polar": "prohibited",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "traffic_engagement": {
+      "label": "Selling followers, likes, views or automated social engagement",
+      "label_zh": "卖粉丝、点赞、播放量，或自动化社媒互动",
+      "pattern": "\\b(?:buy (?:followers|likes|views|subscribers)|(?:followers|likes|views) (?:boost|booster)|grow your followers|auto[- ]?(?:like|follow|comment|dm)s?|engagement (?:pods?|bots?)|social media automation)\\b",
+      "stance": {
+        "stripe": "prohibited",
+        "paddle": "prohibited",
+        "lemonsqueezy": "unknown",
+        "creem": "prohibited",
+        "dodo": "review",
+        "polar": "prohibited",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "lead_outreach": {
+      "label": "Lead generation or automated outreach",
+      "label_zh": "获客线索或自动化外联",
+      "pattern": "\\b(?:lead generation|lead gen|automated outreach|cold (?:email|outreach) automation|email finder|scrape (?:emails|leads))\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "review",
+        "lemonsqueezy": "unknown",
+        "creem": "unknown",
+        "dodo": "review",
+        "polar": "prohibited",
+        "waffo": "unknown",
+        "gumroad": "unknown"
+      },
+      "note": "one founder reports Polar turned down a SaaS whose landing page said lead generation",
+      "look_only": true
+    },
+    "downloader_bypass": {
+      "label": "Content downloaders, scrapers, or tools that get around paywalls, captchas or rate limits",
+      "label_zh": "内容下载器、爬虫，或绕过付费墙、验证码、限流的工具",
+      "pattern": "\\b(?:(?:youtube|tiktok|instagram|twitter|video) downloader|download (?:youtube|tiktok|instagram) videos?|bypass (?:paywalls?|captchas?|rate limits?)|captcha solv\\w*|web scraping (?:tool|api|service))\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "review",
+        "lemonsqueezy": "unknown",
+        "creem": "prohibited",
+        "dodo": "prohibited",
+        "polar": "prohibited",
+        "waffo": "unknown",
+        "gumroad": "unknown"
+      },
+      "note": "Paddle names captcha solving"
+    },
+    "vpn_hosting": {
+      "label": "VPN, proxies, VPS or cloud credits",
+      "label_zh": "VPN、代理、VPS 或云算力",
+      "pattern": "\\b(?:vpn (?:service|app|subscription|servers?|plans?)|(?:buy|cheap|our) vps|vps (?:hosting|plans?|servers?)|proxy (?:service|servers?|network|pool)|residential (?:proxies|ips?)|cloud credits|gpu (?:rental|cloud|hours))\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "restricted",
+        "lemonsqueezy": "unknown",
+        "creem": "unknown",
+        "dodo": "prohibited",
+        "polar": "review",
+        "waffo": "restricted",
+        "gumroad": "unknown"
+      }
+    },
+    "telecom": {
+      "label": "eSIMs, phone numbers or SMS verification",
+      "label_zh": "eSIM、虚拟号码或短信验证码",
+      "pattern": "\\b(?:esims?|virtual (?:phone )?numbers?|sms verification|receive sms|temporary phone)\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "unknown",
+        "lemonsqueezy": "unknown",
+        "creem": "prohibited",
+        "dodo": "unknown",
+        "polar": "unknown",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "spyware": {
+      "label": "Spyware, keyloggers or covert monitoring",
+      "label_zh": "间谍软件、键盘记录或偷偷监控",
+      "pattern": "\\b(?:spyware|keyloggers?|track (?:your )?(?:partner|spouse|wife|husband)|phone monitoring app|parental control app)\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "prohibited",
+        "lemonsqueezy": "prohibited",
+        "creem": "prohibited",
+        "dodo": "unknown",
+        "polar": "unknown",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "people_search": {
+      "label": "People search, reverse face search or OSINT dossiers",
+      "label_zh": "查人、以脸搜人或开盒类",
+      "pattern": "\\b(?:people search|find anyone|reverse (?:face|phone|email) (?:search|lookup)|background checks?|osint)\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "unknown",
+        "lemonsqueezy": "unknown",
+        "creem": "unknown",
+        "dodo": "unknown",
+        "polar": "prohibited",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "dating": {
+      "label": "Dating, or live voice and video with real people",
+      "label_zh": "交友约会，或真人语音视频连麦",
+      "pattern": "\\b(?:dating (?:app|site|service)|find (?:a|your) (?:date|match)|hookups?|random video chat|voice chat rooms?)\\b",
+      "stance": {
+        "stripe": "restricted",
+        "paddle": "unknown",
+        "lemonsqueezy": "prohibited",
+        "creem": "prohibited",
+        "dodo": "unknown",
+        "polar": "unknown",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "iptv": {
+      "label": "IPTV or unlicensed streaming",
+      "label_zh": "IPTV 或无版权的流媒体",
+      "pattern": "\\b(?:iptv|live tv channels|free movies|streaming (?:links|channels))\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "unknown",
+        "lemonsqueezy": "prohibited",
+        "creem": "prohibited",
+        "dodo": "unknown",
+        "polar": "unknown",
+        "waffo": "restricted",
+        "gumroad": "unknown"
+      }
+    },
+    "divination": {
+      "label": "Fortune-telling, astrology, tarot or feng shui",
+      "label_zh": "算命、星座、塔罗或风水",
+      "pattern": "\\b(?:tarot|astrolog\\w*|horoscopes?|feng shui|bazi|fortune[- ]telling|zi wei)\\b|八字|紫微|算命",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "unknown",
+        "lemonsqueezy": "unknown",
+        "creem": "prohibited",
+        "dodo": "unknown",
+        "polar": "unknown",
+        "waffo": "restricted",
+        "gumroad": "unknown"
+      }
+    },
+    "donations": {
+      "label": "Donations, tips or crowdfunding",
+      "label_zh": "捐赠、打赏或众筹",
+      "pattern": "\\b(?:donate (?:now|today|to (?:us|the project))|make a donation|accept(?:ing|s)? donations|tip jar|buy me a coffee|crowdfund\\w*|support (?:us|our work) with a donation)\\b",
+      "stance": {
+        "stripe": "allowed",
+        "paddle": "prohibited",
+        "lemonsqueezy": "unknown",
+        "creem": "prohibited",
+        "dodo": "prohibited",
+        "polar": "unknown",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "waitlist": {
+      "label": "Waitlists, pre-orders or holding pages",
+      "label_zh": "候补名单、预售或占位页",
+      "pattern": "\\b(?:join (?:the|our) waitlist|pre-?orders?|reserve your spot|early access (?:list|signup))\\b",
+      "stance": {
+        "stripe": "review",
+        "paddle": "unknown",
+        "lemonsqueezy": "unknown",
+        "creem": "review",
+        "dodo": "prohibited",
+        "polar": "review",
+        "waffo": "review",
+        "gumroad": "unknown"
+      },
+      "note": "every platform here wants a product that is live and usable when it reviews",
+      "look_only": true
+    },
+    "ebooks": {
+      "label": "E-books and PDF guides",
+      "label_zh": "电子书和 PDF 指南",
+      "pattern": "\\b(?:e-?books?|pdf guides?|digital guides?)\\b",
+      "stance": {
+        "stripe": "allowed",
+        "paddle": "unknown",
+        "lemonsqueezy": "allowed",
+        "creem": "unknown",
+        "dodo": "review",
+        "polar": "review",
+        "waffo": "allowed",
+        "gumroad": "allowed"
+      },
+      "note": "Dodo bans thin AI-generated PDFs and reviews other e-books",
+      "look_only": true,
+      "note_zh": "Dodo 禁止 AI 批量生成的低价值 PDF，其他电子书要审核"
+    },
+    "advertising": {
+      "label": "Selling ad placements or newsletter sponsorships",
+      "label_zh": "卖广告位或 newsletter 赞助",
+      "pattern": "\\b(?:sponsor (?:our|my|the) newsletter|newsletter sponsorships?|advertise (?:with us|on our site)|ad (?:placements?|slots?) (?:for sale|available))\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "unknown",
+        "lemonsqueezy": "unknown",
+        "creem": "restricted",
+        "dodo": "unknown",
+        "polar": "unknown",
+        "waffo": "restricted",
+        "gumroad": "unknown"
+      },
+      "look_only": true
+    },
+    "tech_support": {
+      "label": "Remote tech support services",
+      "label_zh": "远程技术支持服务",
+      "pattern": "\\b(?:tech(?:nical)? support services?|remote (?:tech )?support|fix your (?:computer|pc))\\b",
+      "stance": {
+        "stripe": "prohibited",
+        "paddle": "restricted",
+        "lemonsqueezy": "unknown",
+        "creem": "restricted",
+        "dodo": "unknown",
+        "polar": "prohibited",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    },
+    "mlm_essay": {
+      "label": "Multi-level marketing, or essay and homework mills",
+      "label_zh": "传销式分销，或代写作业论文",
+      "pattern": "\\b(?:multi-level marketing|\\bmlm\\b|network marketing|downline|write my essay|essay writing service|do my homework|assignment help)\\b",
+      "stance": {
+        "stripe": "unknown",
+        "paddle": "unknown",
+        "lemonsqueezy": "prohibited",
+        "creem": "prohibited",
+        "dodo": "unknown",
+        "polar": "unknown",
+        "waffo": "prohibited",
+        "gumroad": "unknown"
+      }
+    }
+  },
+  "look_only_note": "Categories marked look_only are named in words that also describe other things (templates for coaches, a plugin marketplace, an e-book bonus): a check only asks you to look. Choose the product type in pick to rule on them."
+}

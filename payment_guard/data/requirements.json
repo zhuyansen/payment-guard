@@ -1,0 +1,145 @@
+{
+  "checked": "2026-10-16",
+  "levels": {
+    "blocker": "the review stops here",
+    "required": "on the platform's published list",
+    "advised": "not on this platform's published list, but other platforms ask for it or reviewers look for it",
+    "manual": "a tool cannot check it; look yourself"
+  },
+  "platforms": {
+    "stripe": {
+      "source": "https://docs.stripe.com/get-started/checklist/website",
+      "requirements": [
+        {"check": "loads", "level": "blocker", "source": "https://support.stripe.com/questions/business-website-for-account-activation-faq"},
+        {"check": "no_wall", "level": "blocker", "source": "https://support.stripe.com/questions/business-website-for-account-activation-faq"},
+        {"check": "no_placeholder", "level": "blocker", "source": "https://support.stripe.com/questions/business-website-for-account-activation-faq"},
+        {"check": "describes_product", "level": "required"},
+        {"check": "currency_explicit", "level": "required"},
+        {"check": "pricing_visible", "level": "advised"},
+        {"check": "contact_methods", "level": "required"},
+        {"check": "refund_policy", "level": "required"},
+        {"check": "cancellation", "level": "required"},
+        {"check": "privacy_page", "level": "required"},
+        {"check": "business_address", "level": "required"},
+        {"check": "https", "level": "required"},
+        {"check": "secure_payment", "level": "advised"},
+        {"check": "terms_page", "level": "advised"},
+        {"check": "categories", "level": "blocker", "source": "https://stripe.com/legal/restricted-businesses"},
+        {"check": "manual_match", "level": "manual", "source": "https://support.stripe.com/questions/business-website-for-account-activation-faq"}
+      ]
+    },
+    "paddle": {
+      "source": "https://www.paddle.com/help/start/account-verification/what-is-domain-verification",
+      "requirements": [
+        {"check": "loads", "level": "blocker"},
+        {"check": "https", "level": "required"},
+        {"check": "describes_product", "level": "required"},
+        {"check": "pricing_visible", "level": "required"},
+        {"check": "terms_page", "level": "required"},
+        {"check": "refund_policy", "level": "required"},
+        {"check": "privacy_page", "level": "required"},
+        {"check": "legal_in_footer", "level": "required"},
+        {"check": "entity_in_terms", "level": "required"},
+        {"check": "no_wall", "level": "advised"},
+        {"check": "categories", "level": "blocker", "source": "https://www.paddle.com/help/start/intro-to-paddle/what-am-i-not-allowed-to-sell-on-paddle"},
+        {"check": "manual_match", "level": "manual"}
+      ]
+    },
+    "lemonsqueezy": {
+      "source": "https://docs.lemonsqueezy.com/help/getting-started/activate-your-store",
+      "requirements": [
+        {"check": "loads", "level": "blocker"},
+        {"check": "describes_product", "level": "advised"},
+        {"check": "pricing_visible", "level": "advised"},
+        {"check": "terms_page", "level": "advised"},
+        {"check": "privacy_page", "level": "advised"},
+        {"check": "refund_policy", "level": "advised"},
+        {"check": "support_email", "level": "advised"},
+        {"check": "categories", "level": "blocker", "source": "https://docs.lemonsqueezy.com/help/getting-started/prohibited-products"}
+      ]
+    },
+    "creem": {
+      "source": "https://docs.creem.io/merchant-of-record/account-reviews/account-reviews",
+      "requirements": [
+        {"check": "loads", "level": "blocker"},
+        {"check": "no_wall", "level": "blocker", "source": "https://docs.creem.io/merchant-of-record/account-reviews/re-review-guide"},
+        {"check": "no_placeholder", "level": "blocker", "source": "https://docs.creem.io/merchant-of-record/account-reviews/re-review-guide"},
+        {"check": "describes_product", "level": "required"},
+        {"check": "pricing_visible", "level": "required"},
+        {"check": "terms_page", "level": "required"},
+        {"check": "privacy_page", "level": "required"},
+        {"check": "support_email", "level": "required"},
+        {"check": "cancellation", "level": "required"},
+        {"check": "refund_policy", "level": "advised"},
+        {"check": "ai_name", "level": "required", "source": "https://docs.creem.io/merchant-of-record/account-reviews/ai-wrapper-compliance"},
+        {"check": "ai_disclaimer", "level": "required", "source": "https://docs.creem.io/merchant-of-record/account-reviews/ai-wrapper-compliance"},
+        {"check": "ai_aup", "level": "required", "source": "https://docs.creem.io/merchant-of-record/account-reviews/ai-wrapper-compliance"},
+        {"check": "ai_nsfw_marketing", "level": "blocker", "source": "https://docs.creem.io/merchant-of-record/account-reviews/ai-wrapper-compliance"},
+        {"check": "ai_moderation", "level": "required", "source": "https://docs.creem.io/merchant-of-record/account-reviews/account-reviews"},
+        {"check": "categories", "level": "blocker", "source": "https://docs.creem.io/merchant-of-record/account-reviews/account-reviews#prohibited-products"},
+        {"check": "manual_claims", "level": "manual"},
+        {"check": "manual_trademark", "level": "manual"}
+      ]
+    },
+    "dodo": {
+      "source": "https://docs.dodopayments.com/miscellaneous/verification-process",
+      "requirements": [
+        {"check": "loads", "level": "blocker"},
+        {"check": "no_wall", "level": "required"},
+        {"check": "no_placeholder", "level": "blocker", "source": "https://docs.dodopayments.com/miscellaneous/merchant-acceptance"},
+        {"check": "describes_product", "level": "required"},
+        {"check": "pricing_visible", "level": "required"},
+        {"check": "billing_interval", "level": "required"},
+        {"check": "terms_page", "level": "required"},
+        {"check": "privacy_page", "level": "required"},
+        {"check": "refund_policy", "level": "required"},
+        {"check": "cancellation", "level": "required"},
+        {"check": "support_contact", "level": "required"},
+        {"check": "legal_in_footer", "level": "required"},
+        {"check": "categories", "level": "blocker", "source": "https://docs.dodopayments.com/miscellaneous/merchant-acceptance"},
+        {"check": "manual_match", "level": "manual"}
+      ]
+    },
+    "polar": {
+      "source": "https://polar.sh/docs/merchant-of-record/account-reviews",
+      "requirements": [
+        {"check": "loads", "level": "blocker"},
+        {"check": "no_placeholder", "level": "blocker"},
+        {"check": "describes_product", "level": "advised"},
+        {"check": "pricing_visible", "level": "advised"},
+        {"check": "terms_page", "level": "advised"},
+        {"check": "privacy_page", "level": "advised"},
+        {"check": "social_links", "level": "advised"},
+        {"check": "categories", "level": "blocker", "source": "https://polar.sh/legal/acceptable-use-policy"}
+      ]
+    },
+    "waffo": {
+      "source": "https://docs.waffo.ai/mor/account-reviews",
+      "requirements": [
+        {"check": "loads", "level": "blocker"},
+        {"check": "no_wall", "level": "blocker"},
+        {"check": "no_placeholder", "level": "blocker"},
+        {"check": "describes_product", "level": "required"},
+        {"check": "pricing_page", "level": "required"},
+        {"check": "pricing_visible", "level": "required"},
+        {"check": "billing_interval", "level": "required"},
+        {"check": "renewal_terms", "level": "required"},
+        {"check": "terms_page", "level": "required"},
+        {"check": "privacy_page", "level": "required"},
+        {"check": "legal_in_footer", "level": "required"},
+        {"check": "support_email", "level": "required"},
+        {"check": "terms_minimum", "level": "required"},
+        {"check": "privacy_minimum", "level": "required"},
+        {"check": "ai_models_named", "level": "required", "source": "https://docs.waffo.ai/mor/account-reviews/aigc-compliance"},
+        {"check": "ai_moderation", "level": "required", "source": "https://docs.waffo.ai/mor/account-reviews/aigc-compliance"},
+        {"check": "categories", "level": "blocker", "source": "https://docs.waffo.ai/mor/prohibited-products"},
+        {"check": "manual_claims", "level": "manual"},
+        {"check": "manual_trademark", "level": "manual"}
+      ]
+    },
+    "gumroad": {
+      "source": "",
+      "requirements": []
+    }
+  }
+}

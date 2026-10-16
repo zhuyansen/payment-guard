@@ -1,0 +1,115 @@
+{
+ "ai_products_by_year": {
+  "2024": {
+   "gumroad": 225,
+   "lemonsqueezy": 105,
+   "polar": 4,
+   "stripe": 523
+  },
+  "2025": {
+   "creem": 3,
+   "dodo": 9,
+   "gumroad": 520,
+   "lemonsqueezy": 157,
+   "paddle": 1,
+   "polar": 35,
+   "stripe": 1459
+  },
+  "2026": {
+   "creem": 54,
+   "dodo": 104,
+   "gumroad": 1371,
+   "lemonsqueezy": 481,
+   "paddle": 3,
+   "polar": 359,
+   "stripe": 4325
+  }
+ },
+ "as_of": "2026-10-15",
+ "caveat": "Counted from public checkout links found in backlink data, sellers worldwide. Checkouts a page opens with a script (Paddle.js, Stripe Checkout sessions) leave no link, so Paddle and embedded Stripe are undercounted; Gumroad and Stripe Payment Links are overcounted for the same reason.",
+ "kinds": {
+  "ai_product": {
+   "sellers": 8881,
+   "shares": {
+    "creem": 0.6,
+    "dodo": 1.3,
+    "gumroad": 21.3,
+    "lemonsqueezy": 7.2,
+    "paddle": 0.0,
+    "polar": 4.4,
+    "stripe": 65.1
+   }
+  },
+  "content": {
+   "sellers": 15917,
+   "shares": {
+    "creem": 0.2,
+    "dodo": 0.3,
+    "gumroad": 41.7,
+    "lemonsqueezy": 2.7,
+    "paddle": 0.1,
+    "polar": 0.8,
+    "stripe": 54.3
+   }
+  },
+  "course": {
+   "sellers": 25219,
+   "shares": {
+    "creem": 0.1,
+    "dodo": 0.1,
+    "gumroad": 12.6,
+    "lemonsqueezy": 1.2,
+    "paddle": 0.0,
+    "polar": 0.2,
+    "stripe": 85.8
+   }
+  },
+  "donation": {
+   "sellers": 8936,
+   "shares": {
+    "creem": 0.0,
+    "dodo": 0.0,
+    "gumroad": 8.4,
+    "lemonsqueezy": 0.2,
+    "polar": 0.0,
+    "stripe": 91.4
+   }
+  },
+  "physical": {
+   "sellers": 4619,
+   "shares": {
+    "creem": 0.0,
+    "dodo": 0.0,
+    "gumroad": 17.4,
+    "lemonsqueezy": 1.2,
+    "polar": 0.2,
+    "stripe": 81.2
+   }
+  },
+  "software": {
+   "sellers": 13746,
+   "shares": {
+    "creem": 1.1,
+    "dodo": 2.0,
+    "gumroad": 18.7,
+    "lemonsqueezy": 10.9,
+    "paddle": 0.3,
+    "polar": 6.3,
+    "stripe": 60.7
+   }
+  },
+  "template": {
+   "sellers": 2861,
+   "shares": {
+    "creem": 0.8,
+    "dodo": 0.5,
+    "gumroad": 36.8,
+    "lemonsqueezy": 33.5,
+    "paddle": 0.4,
+    "polar": 10.5,
+    "stripe": 17.5
+   }
+  }
+ },
+ "since": "2025-01-01"
+}
