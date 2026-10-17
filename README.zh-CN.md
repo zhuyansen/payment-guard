@@ -4,7 +4,7 @@
 
 先挑一个你**真能开户**的收款平台，再在**提交审核之前**，按这个平台公开的审核清单把你的网站逐条查一遍。
 
-给在网上卖软件、SaaS、AI 工具、模板、课程、电子书的人用，尤其是中国大陆和香港的卖家：大陆个人开不了 Stripe 和 Polar，能选的基本是代收税的 MoR 平台（Creem、Dodo Payments、Waffo Pancake、Paddle、Lemon Squeezy、Gumroad），而每家要求网站上写的东西都不一样。
+给在网上卖软件、SaaS、AI 工具、模板、课程、电子书的人用，尤其是中国大陆和香港的卖家：大陆个人开不了 Stripe 和 Polar，能选的基本是 PayPal.cn 或代收税的 MoR 平台（Creem、Dodo Payments、Waffo Pancake、Paddle、Lemon Squeezy、Gumroad），而每家要求网站上写的东西都不一样。
 
 ## 快速上手
 
@@ -43,6 +43,7 @@ payment-guard pick --entity cn-individual --product saas --lang zh
 | 平台 | 能不能开户 | 收不收这类产品 | 代收税（MoR） | 卖 $20 给海外买家到手 | 同类产品在用 |
 |---|---|---|---|---|---|
 | Creem | ✅ 能 | ✅ 允许 | ✅ | $18.82 | 1.1% |
+| PayPal | ✅ 能 | ✅ 允许 | – | $18.82 | – |
 | Waffo Pancake | ✅ 能 | ✅ 允许 | ✅ | $18.72 | – |
 | Paddle | ✅ 能 | ✅ 允许 | ✅ | $18.50 | 0.3%（低估） |
 | Dodo Payments | ✅ 能 | ✅ 允许 | ✅ | $18.40 | 2.0% |
@@ -145,6 +146,7 @@ payment-guard check 你的域名 --for creem,dodo,waffo --lang zh
 | Gumroad | ✅ | 10% + 50 美分，另加刷卡费 2.9% + 30 美分 | 🟡 通过 PayPal 出款 | 不审网站：产品页由 Gumroad 托管 |
 | Polar | ✅ | 新组织 5% + 50 美分；国际 +1.5% | ⛔ | [account reviews](https://polar.sh/docs/merchant-of-record/account-reviews) |
 | Stripe | – | 美国账户 2.9% + 30 美分；国际卡 +1.5% | ⛔ | [website checklist](https://docs.stripe.com/get-started/checklist/website) |
+| PayPal（PayPal.cn） | – | 收海外付款 4.40% + 30 美分 | ✅ 个人卖家账户；可按人民币提现到国内银行卡 | 没有网站审核的说法；没核对禁售清单 |
 
 读取于 2026-10-16 和 10-17。出款周期、押款、审核时长、拒付规则和每家的开户步骤都在 `pick` 报告里。Waffo 是 Waffo Pancake 背后的公司，另有给香港、新加坡、美国注册公司用的收单网关；这个工具覆盖的是 Waffo Pancake。
 

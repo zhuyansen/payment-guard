@@ -47,8 +47,8 @@ def how_to_open(key: str, entity: str, lang: str) -> dict:
     """The platform's own account-opening steps and what to have ready, for an individual or a company; {} when the
     platform's onboarding was not read."""
     o = opening()["platforms"].get(key)
-    if not o:
-        return {}
+    if not o or (o.get("only_entities") and entity not in o["only_entities"]):
+        return {}      # PayPal's steps are PayPal.cn's: they do not hold for a company abroad
     who, say = holder(entity), (lambda x: x["zh"] if lang == "zh" else x["en"])
     return {"steps": [say(s) for s in o["steps"] if s.get("only") in (None, who)],
             "needs": [say(n) for n in o["needs"].get(who, [])], "signup": o["signup"], "source": o["source"]}

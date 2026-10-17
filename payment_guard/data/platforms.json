@@ -524,6 +524,70 @@
      "2025 年起是 MoR；这个工具没核对它的禁售清单，所以类目一栏都显示「政策没提」。"
     ]
    }
+  },
+  "paypal": {
+   "name": "PayPal",
+   "mor": false,
+   "fee": {
+    "percent": 4.4,
+    "fixed": 0.3,
+    "intl": 0,
+    "subscription": 0,
+    "text": "China accounts: 4.40% + US$0.30 for payments from abroad. CNY withdrawals to a Chinese bank cost 0.5% to the end of 2026 (1.0% standard) plus 6% VAT on the fee; a USD wire costs US$35."
+   },
+   "entities": {
+    "cn-individual": {
+     "status": "yes",
+     "note": "PayPal.cn's personal seller account, opened with real-name verification (China residents aged 18 or over); personal accounts registered on paypal.com after 30 June 2026 cannot take payments for goods",
+     "source": "https://www.paypal.cn/portal/individual-seller"
+    },
+    "cn-company": {
+     "status": "yes",
+     "note": "PayPal.cn's business seller account, opened with entity verification: the business licence and the legal representative's ID",
+     "source": "https://www.paypal.cn/portal/account-selection"
+    },
+    "hk-company": {
+     "status": "unverified",
+     "note": "PayPal's Hong Kong pages were not read for this tool",
+     "source": "https://www.paypal.com/"
+    },
+    "us-company": {
+     "status": "unverified",
+     "note": "PayPal's US pages were not read for this tool",
+     "source": "https://www.paypal.com/"
+    },
+    "uk-company": {
+     "status": "unverified",
+     "note": "PayPal's UK pages were not read for this tool",
+     "source": "https://www.paypal.com/"
+    }
+   },
+   "payout": "CNY to a Chinese bank account through PayPal cross-border collection (from US$20 a request, usually the same day before 13:00 Beijing time; individuals can use a personal bank card), or USD by wire (US$35 each, minimum US$150, 3–7 business days)",
+   "review_time": "no website review is described; a new seller's payments can be held up to 30 days",
+   "chargebacks": "a dispute rate of 1.5% or more, with over 100 sales in three months, brings the high dispute fee (US$16 instead of US$8); high claims and chargebacks can limit the account",
+   "review_doc": "https://www.paypal.cn/portal/individual-seller",
+   "aup": "https://www.paypal.com/c2/legalhub/paypal/acceptableuse-full",
+   "notes": [
+    "Not a Merchant of Record: you handle sales tax and VAT yourself.",
+    "Its prohibited list was not checked for this tool, so its category stances read as not addressed."
+   ],
+   "zh": {
+    "fee": "中国账户：收海外付款 4.40% + 0.30 美元。按人民币提现到国内银行 2026 年内 0.5% 封顶（标准 1.0%），另加手续费的 6% 增值税；电汇美元每笔 35 美元。",
+    "entities": {
+     "cn-individual": "PayPal.cn 的个人卖家账户，用个人实名认证开户（中国居民、满 18 岁）；2026 年 6 月 30 日之后在 paypal.com 注册的个人账户不能收货款",
+     "cn-company": "PayPal.cn 的企业卖家账户，做主体认证：营业执照和法定代表人身份证明",
+     "hk-company": "这个工具没读 PayPal 香港的页面",
+     "us-company": "这个工具没读 PayPal 美国的页面",
+     "uk-company": "这个工具没读 PayPal 英国的页面"
+    },
+    "payout": "用 PayPal 跨境收款按人民币提现到国内银行账户（单笔 20 美元起，北京时间 13:00 前一般当天到账；个人可以绑个人银行卡），或者电汇美元（每笔 35 美元，最低 150 美元，3–7 个工作日）",
+    "review_time": "没有网站审核的说法；新卖家的收款最多可能冻结 30 天",
+    "chargebacks": "争议率 1.5% 以上、且前三个月超过 100 笔交易，按高额争议费收（每笔 16 美元，平时 8 美元）；补偿申请和拒付太多会被限制账户",
+    "notes": [
+     "不是 MoR：销售税和增值税要你自己处理。",
+     "这个工具没核对它的禁售清单，所以类目一栏都显示「政策没提」。"
+    ]
+   }
   }
  },
  "entities_zh": {

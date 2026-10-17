@@ -4,7 +4,7 @@
 
 Pick a payment platform you can actually open, then check your website against that platform's published review list **before** you apply.
 
-For people who sell software, SaaS, AI tools, templates, courses or e-books online, and especially for sellers in mainland China or Hong Kong: Stripe and Polar are closed to a mainland individual, and the choice comes down to a Merchant of Record (Creem, Dodo Payments, Waffo Pancake, Paddle, Lemon Squeezy, Gumroad), each with its own list of what your site must show.
+For people who sell software, SaaS, AI tools, templates, courses or e-books online, and especially for sellers in mainland China or Hong Kong: Stripe and Polar are closed to a mainland individual, and the choice comes down to PayPal.cn or a Merchant of Record (Creem, Dodo Payments, Waffo Pancake, Paddle, Lemon Squeezy, Gumroad), each with its own list of what your site must show.
 
 ## Quick start
 
@@ -43,6 +43,7 @@ payment-guard pick --entity cn-individual --product saas
 | Platform | Can you open it | Takes this product | Merchant of Record | You keep from $20 abroad | Sellers like you use it |
 |---|---|---|---|---|---|
 | Creem | ✅ yes | ✅ allowed | ✅ | $18.82 | 1.1% |
+| PayPal | ✅ yes | ✅ allowed | – | $18.82 | – |
 | Waffo Pancake | ✅ yes | ✅ allowed | ✅ | $18.72 | – |
 | Paddle | ✅ yes | ✅ allowed | ✅ | $18.50 | 0.3% (undercounted) |
 | Dodo Payments | ✅ yes | ✅ allowed | ✅ | $18.40 | 2.0% |
@@ -145,6 +146,7 @@ Which of these each platform asks for, and at what level, is in `payment-guard r
 | Gumroad | ✅ | 10% + 50¢ plus 2.9% + 30¢ card processing | 🟡 payouts through PayPal | none: Gumroad hosts the product page |
 | Polar | ✅ | 5% + 50¢ for new organizations; international +1.5% | ⛔ | [account reviews](https://polar.sh/docs/merchant-of-record/account-reviews) |
 | Stripe | – | US account 2.9% + 30¢; international cards +1.5% | ⛔ | [website checklist](https://docs.stripe.com/get-started/checklist/website) |
+| PayPal (PayPal.cn) | – | 4.40% + 30¢ for payments from abroad | ✅ personal seller account; CNY to a Chinese bank card | none described; its prohibited list was not checked |
 
 Read on 2026-10-16 and 2026-10-17. Payout schedules, holds, review times, chargeback rules and the steps to open each account are in the `pick` report. Waffo, the company behind Waffo Pancake, also runs a payment gateway for companies registered in Hong Kong, Singapore or the US; this tool covers Waffo Pancake.
 

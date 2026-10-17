@@ -20,8 +20,8 @@ def opening_both(key: str) -> dict:
     if not o:
         return {}
     sides = {who: both(lambda lang, e=entity: {k: v for k, v in pick.how_to_open(key, e, lang).items() if k in ("steps", "needs")})
-             for who, entity in (("individual", "cn-individual"), ("company", "hk-company"))}
-    return {**sides, "signup": o["signup"], "source": o["source"]}
+             for who, entity in (("individual", "cn-individual"), ("company", "cn-company"))}
+    return {**sides, "signup": o["signup"], "source": o["source"], "entities": o.get("only_entities")}
 
 
 def platform(key: str, meta: dict) -> dict:

@@ -1,6 +1,6 @@
 ---
 name: payment-guard
-description: Pick a payment platform you can actually open and get your website through its review. Use when the user sells software, SaaS, AI tools, templates, courses or other digital products online and asks which payment platform or Merchant of Record to use (Stripe, Paddle, Lemon Squeezy, Creem, Dodo Payments, Polar, Waffo Pancake, Gumroad), whether they can open one from mainland China or with a Hong Kong or US company, whether to open it as an individual or a company, how to open the account and what to prepare, why a platform rejected their store, or whether their site is ready for a platform's review. Reads public pages only; it never signs up or submits anything.
+description: Pick a payment platform you can actually open and get your website through its review. Use when the user sells software, SaaS, AI tools, templates, courses or other digital products online and asks which payment platform or Merchant of Record to use (Stripe, PayPal, Paddle, Lemon Squeezy, Creem, Dodo Payments, Polar, Waffo Pancake, Gumroad), whether they can open one from mainland China or with a Hong Kong or US company, whether to open it as an individual or a company, how to open the account and what to prepare, why a platform rejected their store, or whether their site is ready for a platform's review. Reads public pages only; it never signs up or submits anything.
 ---
 
 # Payment guard

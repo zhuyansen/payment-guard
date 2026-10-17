@@ -268,9 +268,19 @@ def test_a_uk_company_and_registration_facts():
 
 def test_every_platform_has_opening_steps_for_both_holders():
     for key in pick.platforms()["platforms"]:
-        for entity in ("cn-individual", "us-company"):
+        for entity in ("cn-individual", "cn-company", "us-company"):
             o = pick.how_to_open(key, entity, "zh")
+            if key == "paypal" and entity == "us-company":
+                assert o == {}                                   # PayPal.cn's steps are for China accounts only
+                continue
             assert o["steps"] and o["needs"] and o["source"].startswith("https://"), (key, entity)
+
+
+def test_paypal_cn_is_for_china_accounts_only():
+    rows = {r["platform"]: r for r in pick.pick("cn-individual", "saas")["rows"]}
+    assert rows["paypal"]["open"] == "yes" and rows["paypal"]["mor"] is False and rows["paypal"]["opening"]["steps"]
+    hk = {r["platform"]: r for r in pick.pick("hk-company", "saas")["rows"]}
+    assert hk["paypal"]["open"] == "unverified" and hk["paypal"]["opening"] == {}
 
 
 def test_the_export_holds_every_holder_and_product(capsys):

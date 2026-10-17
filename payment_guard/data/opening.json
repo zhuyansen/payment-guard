@@ -576,6 +576,78 @@
           }
         ]
       }
+    },
+    "paypal": {
+      "signup": "https://www.paypal.cn/portal/account-selection",
+      "source": "https://www.paypal.cn/portal/individual-seller",
+      "only_entities": [
+        "cn-individual",
+        "cn-company"
+      ],
+      "steps": [
+        {
+          "en": "Register on PayPal.cn and accept the PayPal China cross-border agreement (with 贝宝支付（北京）有限公司).",
+          "zh": "在 PayPal.cn 注册，接受 PayPal 中国跨境支付服务用户协议（签约方是贝宝支付（北京）有限公司）。"
+        },
+        {
+          "en": "Choose the personal seller account and pass personal real-name verification (China residents aged 18 or over).",
+          "zh": "选「个人卖家账户」，完成个人实名认证（中国居民、满 18 岁）。",
+          "only": "individual"
+        },
+        {
+          "en": "Choose the business seller account and pass entity verification: the business licence and the legal representative's ID.",
+          "zh": "选「企业卖家账户」，完成主体认证：营业执照和法定代表人的身份证明。",
+          "only": "company"
+        },
+        {
+          "en": "Add PayPal checkout to your site; payments from abroad cost 4.40% + US$0.30.",
+          "zh": "在网站上接 PayPal 付款；收海外付款 4.40% + 0.30 美元。"
+        },
+        {
+          "en": "Bind a personal bank card for CNY collection: from US$20 a request, usually the same day before 13:00 Beijing time, 0.5% to the end of 2026 (1.0% standard) plus 6% VAT on the fee.",
+          "zh": "绑定个人银行卡，用 PayPal 跨境收款按人民币提现：单笔 20 美元起，北京时间 13:00 前提交一般当天到账；2026 年内 0.5% 封顶（标准 1.0%），另加手续费的 6% 增值税。",
+          "only": "individual"
+        },
+        {
+          "en": "Bind the company's Chinese bank account for CNY collection, or withdraw USD by wire (US$35 each, minimum US$150, 3–7 business days).",
+          "zh": "绑定公司的国内银行账户按人民币提现，或者电汇美元（每笔 35 美元，最低 150 美元，3–7 个工作日）。",
+          "only": "company"
+        },
+        {
+          "en": "Keep disputes low: a dispute rate of 1.5% or more, with over 100 sales in three months, brings the high dispute fee, and a new seller's payments can be held up to 30 days.",
+          "zh": "控制争议率：争议率 1.5% 以上、且前三个月超过 100 笔交易，按高额争议费收；新卖家的收款最多可能冻结 30 天。"
+        }
+      ],
+      "needs": {
+        "individual": [
+          {
+            "en": "personal real-name verification as a China resident (the document list is in PayPal.cn's individual seller guide)",
+            "zh": "中国居民个人实名认证（要哪些证件见 PayPal.cn 的个人卖家注册指南）"
+          },
+          {
+            "en": "a personal bank card in mainland China",
+            "zh": "本人名下的国内银行卡"
+          },
+          {
+            "en": "a website with PayPal checkout",
+            "zh": "接好 PayPal 付款的网站"
+          }
+        ],
+        "company": [
+          {
+            "en": "the business licence",
+            "zh": "营业执照"
+          },
+          {
+            "en": "the legal representative's ID",
+            "zh": "法定代表人的身份证明"
+          },
+          {
+            "en": "the company's bank account in mainland China",
+            "zh": "公司的国内银行账户"
+          }
+        ]
+      }
     }
   },
   "registration": [

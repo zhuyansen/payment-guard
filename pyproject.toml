@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "payment-guard"
-version = "0.2.0"
+version = "0.3.0"
 description = "Pick a payment platform you can open (Creem, Dodo, Waffo, Paddle, Lemon Squeezy, Polar, Stripe, Gumroad) and check your website against its published review requirements"
 readme = "README.md"
 requires-python = ">=3.10"
