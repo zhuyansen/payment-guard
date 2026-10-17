@@ -195,9 +195,9 @@
    "chargebacks": "too many chargebacks can suspend the account; US$15 per dispute",
    "review_doc": "https://docs.lemonsqueezy.com/help/getting-started/activate-your-store",
    "aup": "https://docs.lemonsqueezy.com/help/getting-started/prohibited-products",
-   "notes": [
-    "Owned by Stripe; in January 2026 its CEO said the team is building toward Stripe Managed Payments and that support has slowed (https://www.lemonsqueezy.com/blog/2026-update)."
-   ],
+   "notes": [],
+   "warning": "On 28 January 2026 Lemon Squeezy's CEO wrote that support had slowed and product updates had thinned while the team built Stripe Managed Payments, Stripe's own merchant of record, and that the goal is an easy way for Lemon Squeezy users to migrate to it. Weigh that before you build on Lemon Squeezy.",
+   "warning_source": "https://www.lemonsqueezy.com/blog/2026-update",
    "zh": {
     "fee": "5% + 50 美分；非美国买家 +1.5%，PayPal +1.5%，订阅 +0.5%。",
     "entities": {
@@ -210,9 +210,8 @@
     "payout": "每月两次按美元出款，先押 13 天，最低 50 美元；美国以外银行出款收 1%，PayPal 收 3%（最高 30 美元）",
     "review_time": "2–3 个工作日",
     "chargebacks": "拒付太多会被停用；每笔争议收 15 美元",
-    "notes": [
-     "已被 Stripe 收购；2026 年 1 月 CEO 公开说团队在转向 Stripe Managed Payments，支持变慢了（https://www.lemonsqueezy.com/blog/2026-update）。"
-    ]
+    "notes": [],
+    "warning": "Lemon Squeezy 的 CEO 在 2026 年 1 月 28 日的官方博客里说，团队忙着做 Stripe 自己的代收税平台 Stripe Managed Payments，客服回复变慢、产品更新变少，目标是让 Lemon Squeezy 的用户能轻松迁移过去。现在新接入要考虑到这一点。"
    }
   },
   "creem": {

@@ -50,6 +50,8 @@ payment-guard pick --entity cn-individual --product saas
 | Gumroad | 🟡 likely | ✅ allowed | ✅ | $16.62 | 18.7% |
 | Lemon Squeezy | ❔ not stated | ✅ allowed | ✅ | $18.10 | 10.9% |
 
+⚠️ Lemon Squeezy: On 28 January 2026 Lemon Squeezy's CEO wrote that support had slowed and product updates had thinned while the team built Stripe Managed Payments, Stripe's own merchant of record, and that the goal is an easy way for Lemon Squeezy users to migrate to it. Weigh that before you build on Lemon Squeezy. (https://www.lemonsqueezy.com/blog/2026-update)
+
 Left out:
 - Stripe: no accounts for mainland China (https://stripe.com/global)
 - Polar: payouts go only through Stripe Connect Express, which does not reach mainland China (https://polar.sh/docs/merchant-of-record/supported-countries)

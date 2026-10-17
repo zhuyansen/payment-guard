@@ -50,6 +50,8 @@ payment-guard pick --entity cn-individual --product saas --lang zh
 | Gumroad | 🟡 大概率能 | ✅ 允许 | ✅ | $16.62 | 18.7% |
 | Lemon Squeezy | ❔ 官方没说 | ✅ 允许 | ✅ | $18.10 | 10.9% |
 
+⚠️ Lemon Squeezy：Lemon Squeezy 的 CEO 在 2026 年 1 月 28 日的官方博客里说，团队忙着做 Stripe 自己的代收税平台 Stripe Managed Payments，客服回复变慢、产品更新变少，目标是让 Lemon Squeezy 的用户能轻松迁移过去。现在新接入要考虑到这一点。（https://www.lemonsqueezy.com/blog/2026-update）
+
 不考虑的：
 - Stripe：不支持中国大陆开户（https://stripe.com/global）
 - Polar：只能通过 Stripe Connect Express 出款，不支持中国大陆（https://polar.sh/docs/merchant-of-record/supported-countries）

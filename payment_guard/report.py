@@ -114,7 +114,15 @@ def table_lines(result: dict, lang: str) -> list[str]:
         lines.append(f"| {r['name']} | {w['open'][r['open']]} | {w['fit'][r['fit']]} | {'✅' if r['mor'] else '–'} | ${r['keep']:.2f} | {share} |")
     if result["category_note"]:
         lines += ["", ("平台怎么看这类产品：" if zh else "What the platforms say about this kind of product: ") + result["category_note"]]
+    warned = [r for r in result["rows"] if r.get("warning")]
+    if warned:
+        lines += [""] + [warning_line(r, zh) for r in warned]
     return lines
+
+
+def warning_line(r: dict, zh: bool) -> str:
+    """A platform-level warning (e.g. Lemon Squeezy moving users to Stripe Managed Payments), with its source."""
+    return f"⚠️ {r['name']}：{r['warning']}（{r['warning_source']}）" if zh else f"⚠️ {r['name']}: {r['warning']} ({r['warning_source']})"
 
 
 def excluded_lines(result: dict, lang: str) -> list[str]:
@@ -136,6 +144,7 @@ def detail_lines(result: dict, lang: str) -> list[str]:
         facts = [("开户" if zh else "Opening", f"{r['open_note'] or w['open'][r['open']]} ({r['open_source']})"),
                  ("费率" if zh else "Fees", r["fee"]), ("出款" if zh else "Payouts", r["payout"]),
                  ("审核" if zh else "Review", r["review_time"]), ("拒付" if zh else "Chargebacks", r["chargebacks"])]
+        lines += [f"- {warning_line(r, zh)}"] if r.get("warning") else []
         lines += [f"- {k}：{v}" if zh else f"- {k}: {v}" for k, v in facts if v]
         lines += [f"- {n}" for n in r["notes"]]
     return lines

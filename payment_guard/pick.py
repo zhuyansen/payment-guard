@@ -107,7 +107,8 @@ def row(key: str, meta: dict, entity: str, product: str, shares: dict, lang: str
             "fit": fit, "fit_source": meta["aup"], "mor": meta["mor"], "keep": keep(fee_for(meta, entity), product == "saas"),
             "fee": text(meta, "fee", lang) if lang == "zh" else meta["fee"]["text"], "payout": text(meta, "payout", lang),
             "review_time": text(meta, "review_time", lang), "chargebacks": text(meta, "chargebacks", lang),
-            "share": shares.get(key), "notes": notes_for(key, product, meta, lang), "opening": how_to_open(key, entity, lang)}
+            "share": shares.get(key), "notes": notes_for(key, product, meta, lang), "opening": how_to_open(key, entity, lang),
+            "warning": text(meta, "warning", lang) if meta.get("warning") else "", "warning_source": meta.get("warning_source", "")}
 
 
 def pick(entity: str, product: str, mor_only: bool = False, lang: str = "en") -> dict:

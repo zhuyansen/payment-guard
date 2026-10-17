@@ -31,6 +31,8 @@ def platform(key: str, meta: dict) -> dict:
     return {"name": meta["name"], "mor": meta["mor"], "aup": meta["aup"], "review_doc": meta["review_doc"],
             "fee": {"en": meta["fee"]["text"], "zh": zh.get("fee", meta["fee"]["text"])},
             **{f: {"en": meta[f], "zh": zh.get(f, meta[f])} for f in ("payout", "review_time", "chargebacks", "notes")},
+            "warning": ({"en": meta["warning"], "zh": zh.get("warning", meta["warning"]), "source": meta["warning_source"]}
+                        if meta.get("warning") else None),
             "entities": entities, "opening": opening_both(key)}
 
 

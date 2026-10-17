@@ -292,6 +292,16 @@ def test_the_export_holds_every_holder_and_product(capsys):
     assert data["platforms"]["dodo"]["opening"]["company"]["zh"]["steps"] and data["usage"]["caveat"]["zh"]
 
 
+def test_lemon_squeezy_carries_its_migration_warning(capsys):
+    hk = pick.pick("hk-company", "saas", lang="zh")
+    ls = next(r for r in hk["rows"] if r["platform"] == "lemonsqueezy")
+    assert "Stripe Managed Payments" in ls["warning"] and ls["warning_source"].endswith("/blog/2026-update")
+    assert "⚠️ Lemon Squeezy：" in report.pick(hk, "zh")
+    assert cli.main(["export"]) == 0
+    warning = json.loads(capsys.readouterr().out)["platforms"]["lemonsqueezy"]["warning"]
+    assert warning["en"] and warning["zh"] and warning["source"] == ls["warning_source"]
+
+
 def test_the_data_is_complete():
     cats = json.loads((DATA / "categories.json").read_text())
     reqs = json.loads((DATA / "requirements.json").read_text())
@@ -305,3 +315,4 @@ def test_the_data_is_complete():
     for key, p in plats["platforms"].items():
         assert set(p["entities"]) == set(plats["entities"]) == set(p["zh"]["entities"]), key
         assert all(e["status"] in pick.OPEN and e["source"].startswith("https://") for e in p["entities"].values()), key
+        assert not p.get("warning") or (p["zh"].get("warning") and p["warning_source"].startswith("https://")), key
