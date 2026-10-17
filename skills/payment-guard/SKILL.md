@@ -1,6 +1,6 @@
 ---
 name: payment-guard
-description: Pick a payment platform you can actually open and get your website through its review. Use when the user sells software, SaaS, AI tools, templates, courses or other digital products online and asks which payment platform or Merchant of Record to use (Stripe, Paddle, Lemon Squeezy, Creem, Dodo Payments, Polar, Waffo Pancake, Gumroad), whether they can open one from mainland China or with a Hong Kong or US company, why a platform rejected their store, or whether their site is ready for a platform's review. Reads public pages only; it never signs up or submits anything.
+description: Pick a payment platform you can actually open and get your website through its review. Use when the user sells software, SaaS, AI tools, templates, courses or other digital products online and asks which payment platform or Merchant of Record to use (Stripe, Paddle, Lemon Squeezy, Creem, Dodo Payments, Polar, Waffo Pancake, Gumroad), whether they can open one from mainland China or with a Hong Kong or US company, whether to open it as an individual or a company, how to open the account and what to prepare, why a platform rejected their store, or whether their site is ready for a platform's review. Reads public pages only; it never signs up or submits anything.
 ---
 
 # Payment guard
@@ -10,7 +10,7 @@ Two jobs, in this order: which platforms the user can open at all and which take
 ## Before you run anything
 
 1. Find the tool, in this order: the `payment-guard` command (installed with `pip install "git+https://github.com/zhuyansen/payment-guard"`); `uvx --from git+https://github.com/zhuyansen/payment-guard payment-guard` when `uv` is there; else clone https://github.com/zhuyansen/payment-guard and run `python -m payment_guard` from that folder. Python 3.10 or newer, no dependencies, no keys, free.
-2. Ask what you do not know, in one message: who will hold the account (`cn-individual`, `cn-company`, `hk-company`, `us-company`), what they sell (`saas`, `software`, `ai-app`, `ai-media`, `template`, `course`, `ebook`, `service`, `physical`, `donation`), and their website if it is live. Answer in the user's language; add `--lang zh` for a Chinese report.
+2. Ask what you do not know, in one message and in plain words: do they have a registered company, and where (mainland China, Hong Kong, the US, the UK); what do they sell; is the website live, and at what address. Map the answers to `--entity` (`cn-individual`, `cn-company`, `hk-company`, `us-company`, `uk-company`) and `--product` (`saas`, `software`, `ai-app`, `ai-media`, `template`, `course`, `ebook`, `service`, `physical`, `donation`) yourself; do not make a beginner pick a flag. No registered company means an individual. If they do not know, run `pick` without `--entity`: it assumes an individual in mainland China and starts with what the platforms say about individuals and companies. Answer in the user's language; add `--lang zh` for a Chinese report.
 
 ## 1. Which platform: pick
 
@@ -22,9 +22,13 @@ payment-guard pick --entity cn-individual --product saas --site yoursite.com --l
 - The rest are ordered by how sure the opening is (`yes`, `likely`, `unverified`), how the platform treats the product (`allowed`, `not addressed`, `needs review`, `restricted`), then what a US$20 sale to a buyer abroad leaves after fees.
 - `likely` and `not stated` mean the platform does not say it in as many words; say so, and suggest asking the platform's support before building on it.
 - "Sellers like you use it" is the share among sellers of the same kind of product since 2025, from public checkout links. Paddle and embedded Stripe checkouts leave no link and are undercounted: say this whenever you quote a share.
-- For an AI app or AI media product, `pick` prints under the table what each platform's policy says about it (Dodo and Polar review AI content generation tools; Creem and Waffo restrict generative AI). Say it before the user builds on one platform.
+- For an AI app or AI media product, `pick` prints under the table what each platform's policy says about it (Dodo and Polar review AI content generation tools; Creem and Waffo Pancake restrict generative AI). Say it before the user builds on one platform.
 - A Merchant of Record files sales tax and VAT for the seller; Stripe does not unless Managed Payments is added. For a seller without a company abroad, that usually decides it.
 - With `--site`, the three best fits are also checked (section 2).
+
+## Opening the account
+
+The `pick` report ends with "How to open an account": the steps and what to have ready for the first three platforms whose onboarding was read, for an individual or for a company, with the sign-up link and the official guide. Walk the user through the platform they choose one step at a time, and tell them what to prepare before they start (an identity document, a payout account in their own name, a live website). They sign up themselves: never create the account, fill in identity or bank details, or upload documents for them. A platform without written-up steps gets its official guide link instead; do not invent steps.
 
 ## 2. Will the site pass: check
 
@@ -42,7 +46,7 @@ It reads the home page and the pages a reviewer opens (pricing, terms, privacy, 
 
 ## 3. Fill the gaps
 
-For each `fix`, give the change in one line. When a terms, privacy, refund or acceptable use page is missing or incomplete, draft it from what the check read (`--json` gives `facts`: product name, company or brand, support email, prices, billing cycle, refund window), covering the platform's minimum: Waffo lists what terms and privacy policies must contain; Creem wants AI image and video generators to ban NSFW output in their terms or an acceptable use policy, to name no model brand in the product name, and to say they are not affiliated with the model makers they mention; Waffo wants them to name their real models and describe moderation, and wants the pricing page itself to say whether plans renew automatically. Mark every draft "not legal advice: have it reviewed", fill nothing you did not read (leave `[company address]` and the like as blanks), and run `check` again after the user publishes the pages.
+For each `fix`, give the change in one line. When a terms, privacy, refund or acceptable use page is missing or incomplete, draft it from what the check read (`--json` gives `facts`: product name, company or brand, support email, prices, billing cycle, refund window), covering the platform's minimum: Waffo Pancake lists what terms and privacy policies must contain; Creem wants AI image and video generators to ban NSFW output in their terms or an acceptable use policy, to name no model brand in the product name, and to say they are not affiliated with the model makers they mention; Waffo Pancake wants them to name their real models and describe moderation, and wants the pricing page itself to say whether plans renew automatically. Mark every draft "not legal advice: have it reviewed", fill nothing you did not read (leave `[company address]` and the like as blanks), and run `check` again after the user publishes the pages.
 
 ## Rules
 

@@ -1,7 +1,7 @@
 """Markdown for people, in English or Chinese; the same results are available as JSON with --json."""
 from __future__ import annotations
 
-from . import zh
+from . import pick as pick_mod, zh
 from .check import LABELS
 
 MARK = {"pass": "✅", "fix": "❌", "look": "🔍", "unknown": "❔", "manual": "✋"}
@@ -78,27 +78,59 @@ def check(result: dict, lang: str = "en") -> str:
 
 
 def pick(result: dict, lang: str = "en") -> str:
-    w, zh = WORDS[lang], lang == "zh"
+    zh = lang == "zh"
     what = result["label_zh"] if zh else result["label"]
     lines = [f"# 能用哪家收款：{result['entity_label']}，产品：{what}" if zh else
              f"# Where you can take payments: {result['entity_label']}, selling {what}", ""]
+    if result.get("entity_assumed"):
+        lines += advice_lines(result, zh)
+    lines += table_lines(result, lang) + excluded_lines(result, lang) + detail_lines(result, lang)
+    lines += opening_lines(result, zh) + usage_lines(result, zh)
+    top = ",".join([r["platform"] for r in result["rows"] if r["platform"] != "gumroad"][:3])
+    lines += ["", (f"费率、开户和出款读取于 {result['checked']}，平台会改。下一步：payment-guard check 你的域名 --for {top}" if zh else
+                   f"Fees, eligibility and payouts read on {result['checked']}; platforms change them. Next: payment-guard check yoursite.com --for {top}")]
+    return "\n".join(lines)
+
+
+def advice_lines(result: dict, zh: bool) -> list[str]:
+    """Shown when no --entity was given: who the table assumed, and how to choose."""
+    head = ("没填 --entity，下面按中国大陆个人算。有公司的话加 --entity cn-company、hk-company 或 us-company。" if zh else
+            "No --entity given, so the table assumes an individual in mainland China. With a company, add --entity "
+            "cn-company, hk-company or us-company.")
+    lines = [head, "", "## 个人还是公司" if zh else "## Individual or company", ""]
+    lines += [f"- {a['text']}" + (f"（{a['source']}）" if zh and a["source"] else f" ({a['source']})" if a["source"] else "")
+              for a in result["advice"]]
+    return lines + [""]
+
+
+def table_lines(result: dict, lang: str) -> list[str]:
+    w, zh = WORDS[lang], lang == "zh"
     head = (f"| 平台 | 能不能开户 | 收不收这类产品 | 代收税（MoR） | 卖 ${result['sale']:.0f} 给海外买家到手 | 同类产品在用 |" if zh else
             f"| Platform | Can you open it | Takes this product | Merchant of Record | You keep from ${result['sale']:.0f} abroad | Sellers like you use it |")
-    lines += [head, "|---|---|---|---|---|---|"]
+    lines = [head, "|---|---|---|---|---|---|"]
     for r in result["rows"]:
         share = f"{r['share']}%" if r["share"] is not None else "–"
         share += ("（低估）" if zh else " (undercounted)") if r["platform"] == "paddle" and r["share"] is not None else ""
         lines.append(f"| {r['name']} | {w['open'][r['open']]} | {w['fit'][r['fit']]} | {'✅' if r['mor'] else '–'} | ${r['keep']:.2f} | {share} |")
     if result["category_note"]:
         lines += ["", ("平台怎么看这类产品：" if zh else "What the platforms say about this kind of product: ") + result["category_note"]]
-    if result["excluded"]:
-        lines += ["", "不考虑的：" if zh else "Left out:"]
-        for r in result["excluded"]:
-            why = r["open_note"] if r["open"] == "no" else (w["fit"][r["fit"]] if r["fit"] == "prohibited" else
-                                                              ("不是 MoR" if zh else "not a Merchant of Record"))
-            lines.append(f"- {r['name']}：{why}（{r['open_source'] if r['open'] == 'no' else r['fit_source']}）" if zh else
-                         f"- {r['name']}: {why} ({r['open_source'] if r['open'] == 'no' else r['fit_source']})")
-    lines += ["", "## 每家的细节" if zh else "## Each platform"]
+    return lines
+
+
+def excluded_lines(result: dict, lang: str) -> list[str]:
+    if not result["excluded"]:
+        return []
+    zh = lang == "zh"
+    lines = ["", "不考虑的：" if zh else "Left out:"]
+    for r in result["excluded"]:
+        why, source = pick_mod.left_out(r, lang)
+        lines.append(f"- {r['name']}：{why}（{source}）" if zh else f"- {r['name']}: {why} ({source})")
+    return lines
+
+
+def detail_lines(result: dict, lang: str) -> list[str]:
+    w, zh = WORDS[lang], lang == "zh"
+    lines = ["", "## 每家的细节" if zh else "## Each platform"]
     for r in result["rows"]:
         lines += ["", f"**{r['name']}**"]
         facts = [("开户" if zh else "Opening", f"{r['open_note'] or w['open'][r['open']]} ({r['open_source']})"),
@@ -106,17 +138,32 @@ def pick(result: dict, lang: str = "en") -> str:
                  ("审核" if zh else "Review", r["review_time"]), ("拒付" if zh else "Chargebacks", r["chargebacks"])]
         lines += [f"- {k}：{v}" if zh else f"- {k}: {v}" for k, v in facts if v]
         lines += [f"- {n}" for n in r["notes"]]
+    return lines
+
+
+def opening_lines(result: dict, zh: bool) -> list[str]:
+    """The first three platforms whose onboarding was read: their steps and what to have ready."""
+    top = [r for r in result["rows"] if r["opening"]][:3]
+    if not top:
+        return []
+    lines = ["", "## 怎么开户" if zh else "## How to open an account"]
+    for r in top:
+        o = r["opening"]
+        lines += ["", f"**{r['name']}**"] + [f"{i}. {step}" for i, step in enumerate(o["steps"], 1)]
+        if o["needs"]:
+            lines.append(("要准备：" + "；".join(o["needs"])) if zh else "Have ready: " + "; ".join(o["needs"]))
+        lines.append(f"注册：{o['signup']} · 官方说明：{o['source']}" if zh else f"Sign up: {o['signup']} · Official guide: {o['source']}")
+    return lines
+
+
+def usage_lines(result: dict, zh: bool) -> list[str]:
     u = result["usage"]
-    if u["kind"]:
-        lines += ["", (f"「同类产品在用」：{u['sellers']:,} 个 {u['since']} 以来开卖的同类产品（截至 {u['as_of']}）。数据来自外链里公开出现的收款链接，"
-                       "全球卖家；页面用脚本打开的结账（Paddle.js、Stripe Checkout）不留链接，所以 Paddle 和嵌入式 Stripe 被低估，"
-                       "Gumroad 和 Stripe 收款链接相对被高估。" if zh else
-                       f"\"Sellers like you\": {u['sellers']:,} sellers of this kind since {u['since']} (to {u['as_of']}). {u['caveat']}")]
+    if not u["kind"]:
+        return []
+    lines = ["", (f"「同类产品在用」：{u['sellers']:,} 个 {u['since']} 以来开卖的同类产品（截至 {u['as_of']}）。{u['caveat']}" if zh else
+                  f"\"Sellers like you\": {u['sellers']:,} sellers of this kind since {u['since']} (to {u['as_of']}). {u['caveat']}")]
     if u["ai_by_year"]:
         years = sorted(u["ai_by_year"])
         trend = "; ".join(f"{p} " + " → ".join(str(u["ai_by_year"][y].get(p, 0)) for y in years) for p in ("polar", "dodo", "creem"))
         lines.append((f"新开卖的 AI 产品（{'、'.join(years)} 年）：" if zh else f"New AI products by year ({', '.join(years)}): ") + trend)
-    top = ",".join([r["platform"] for r in result["rows"] if r["platform"] != "gumroad"][:3])
-    lines += ["", (f"费率、开户和出款读取于 {result['checked']}，平台会改。下一步：payment-guard check 你的域名 --for {top}" if zh else
-                   f"Fees, eligibility and payouts read on {result['checked']}; platforms change them. Next: payment-guard check yoursite.com --for {top}")]
-    return "\n".join(lines)
+    return lines

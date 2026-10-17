@@ -1,8 +1,9 @@
 """payment-guard: which payment platform can you open, and will your website pass its review.
 
-  payment-guard pick --entity cn-individual --product saas [--site yoursite.com] [--mor] [--lang zh] [--json]
+  payment-guard pick --product saas [--entity cn-individual] [--site yoursite.com] [--mor] [--lang zh] [--json]
   payment-guard check yoursite.com [--for creem,dodo,waffo | all] [--lang zh] [--json]
   payment-guard rules [platform] [--json]
+  payment-guard export > payment-guard.json   (everything pick knows, for a web page)
 
 Free: it reads public pages only. It never signs up, logs in or submits anything.
 """
@@ -12,7 +13,7 @@ import argparse
 import json
 import sys
 
-from . import __version__, check, pick, report
+from . import __version__, check, export, pick, report
 
 REVIEWED = ("stripe", "paddle", "lemonsqueezy", "creem", "dodo", "polar", "waffo")
 
@@ -33,12 +34,14 @@ def parser() -> argparse.ArgumentParser:
     c.add_argument("site")
     c.add_argument("--for", dest="platforms", type=platforms_arg, default=list(REVIEWED), help="comma-separated, or all")
     k = sub.add_parser("pick", help="which platforms you can open and which take your product")
-    k.add_argument("--entity", required=True, choices=["cn-individual", "cn-company", "hk-company", "us-company"])
+    k.add_argument("--entity", choices=list(export.ENTITIES),
+                   help="who holds the account; left out, an individual in mainland China (no registered company)")
     k.add_argument("--product", required=True, choices=list(pick.PRODUCTS))
     k.add_argument("--mor", action="store_true", help="only Merchants of Record (they file sales tax and VAT for you)")
     k.add_argument("--site", help="also check this site against the three best fits")
     r = sub.add_parser("rules", help="print a platform's requirements with their sources")
     r.add_argument("platform", nargs="?", type=lambda v: platforms_arg(v)[0])
+    sub.add_parser("export", help="everything pick knows, as JSON for a web page")
     for s in (c, k, r):
         s.add_argument("--json", action="store_true")
         s.add_argument("--lang", choices=["en", "zh"], default="en")
@@ -65,7 +68,11 @@ def main(argv: list[str] | None = None) -> int:
         result = check.run(args.site, args.platforms)
         print(json.dumps(result, indent=1, ensure_ascii=False) if args.json else report.check(result, args.lang))
         return 0
-    result = pick.pick(args.entity, args.product, args.mor, args.lang)
+    if args.command == "export":
+        print(json.dumps(export.export(), ensure_ascii=False, separators=(",", ":")))
+        return 0
+    result = pick.pick(args.entity or "cn-individual", args.product, args.mor, args.lang)
+    result["entity_assumed"] = args.entity is None
     if args.site:
         keys = [r["platform"] for r in result["rows"] if r["platform"] in REVIEWED][:3]
         result["check"] = check.run(args.site, keys)

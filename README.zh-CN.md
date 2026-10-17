@@ -10,9 +10,13 @@
 
 ```bash
 pip install "git+https://github.com/zhuyansen/payment-guard"
-payment-guard pick --entity cn-individual --product saas --lang zh
+payment-guard pick --product saas --lang zh
 payment-guard check 你的域名 --for creem,dodo,waffo --lang zh
 ```
+
+没注册公司就不用填 `--entity`：报告按中国大陆个人算，开头先讲各平台对个人和公司开户的要求。
+
+不想装：同一份数据做成了网页版[收款平台选择器](https://jasonzhu.ai/zh/go-global/payments)，点两下就出结果。
 
 Python 3.10 及以上，零依赖，不要 key，免费。不想安装可以用 `uvx --from git+https://github.com/zhuyansen/payment-guard payment-guard pick …`。`--lang zh` 输出中文报告，`--json` 给脚本和 agent 用。它只读公开页面：不注册、不登录、不提交任何东西。
 
@@ -40,8 +44,8 @@ payment-guard pick --entity cn-individual --product saas --lang zh
 |---|---|---|---|---|---|
 | Creem | ✅ 能 | ✅ 允许 | ✅ | $18.82 | 1.1% |
 | Waffo Pancake | ✅ 能 | ✅ 允许 | ✅ | $18.72 | – |
+| Paddle | ✅ 能 | ✅ 允许 | ✅ | $18.50 | 0.3%（低估） |
 | Dodo Payments | ✅ 能 | ✅ 允许 | ✅ | $18.40 | 2.0% |
-| Paddle | 🟡 大概率能 | ✅ 允许 | ✅ | $18.50 | 0.3%（低估） |
 | Gumroad | 🟡 大概率能 | ✅ 允许 | ✅ | $16.62 | 18.7% |
 | Lemon Squeezy | ❔ 官方没说 | ✅ 允许 | ✅ | $18.10 | 10.9% |
 
@@ -61,11 +65,16 @@ payment-guard pick --entity cn-individual --product saas --lang zh
 ```
 
 - **能不能开户**：`能`、`大概率能`（平台文档能推出来，但没有明说）、`官方没说`、`不能`，依据是各平台支持的国家和出款页面。遇到「大概率能」和「官方没说」，动手之前先问平台客服。
-- **收不收这类产品**：`允许`、`政策没提`、`需要审核`、`受限`、`禁止`，依据是各平台的可接受使用政策。比如 AI 应用：Dodo 和 Polar 对 AI 内容生成工具要人工审核，Creem 和 Waffo 把生成式 AI 列为受限；`pick --product ai-app` 会在表格下面写清楚。
+- **收不收这类产品**：`允许`、`政策没提`、`需要审核`、`受限`、`禁止`，依据是各平台的可接受使用政策。比如 AI 应用：Dodo 和 Polar 对 AI 内容生成工具要人工审核，Creem 和 Waffo Pancake 把生成式 AI 列为受限；`pick --product ai-app` 会在表格下面写清楚。
 - **卖 $20 给海外买家到手**：一笔 20 美元、卖给另一个国家买家的订单，扣掉百分比、固定费、国际附加费和订阅附加费之后的钱。换汇和提现手续费在每家的细节里列出，没有扣。
 - **同类产品在用**：见[数据从哪来](#数据从哪来)。
+- **怎么开户**：报告最后列出排名前三、开户流程已整理的平台的开户步骤和要准备的材料（分个人和公司），附注册链接和官方说明。
 
-谁来开户：`cn-individual`（大陆个人）、`cn-company`（大陆公司）、`hk-company`（香港公司）、`us-company`（美国公司）。卖什么：`saas`、`software`、`ai-app`、`ai-media`、`template`、`course`、`ebook`、`service`、`physical`、`donation`。`--mor` 只看 MoR 平台；加 `--site 你的域名` 会顺便按排名前三的平台查一遍网站。
+谁来开户：`cn-individual`（大陆个人）、`cn-company`（大陆公司）、`hk-company`（香港公司）、`us-company`（美国公司）、`uk-company`（英国公司）。卖什么：`saas`、`software`、`ai-app`、`ai-media`、`template`、`course`、`ebook`、`service`、`physical`、`donation`。`--mor` 只看 MoR 平台；加 `--site 你的域名` 会顺便按排名前三的平台查一遍网站。
+
+## 给网页用：`export`
+
+`payment-guard export` 把 `pick` 知道的一切输出成一个 JSON：每家平台的中英文资料，以及每种开户主体、每类产品的排名表。网页直接用它展示，不需要自己写规则，结论和命令行永远一致。
 
 ## 2. 网站能不能过：`check`
 
@@ -106,7 +115,7 @@ payment-guard check 你的域名 --for creem,dodo,waffo --lang zh
 - ✋ **网站内容和你提交给平台的信息一致：名称、描述、价格、交付方式**（人工看）
 ```
 
-这个网站的服务条款里其实写了「自动续费」，但 Waffo 要求写在价格页上，所以 Waffo 这一条还是要改。
+这个网站的服务条款里其实写了「自动续费」，但 Waffo Pancake 要求写在价格页上，所以 Waffo Pancake 这一条还是要改。
 
 每一条的状态是：✅ 通过、❌ 要改、🔍 要看一眼（提到了，但不一定适用）、❔ 读不到（页面打不开）、✋ 人工看；每一条还有级别：**拦路**、**必需**（平台自己的清单上有）、**建议**（它的清单上没有，但别家会问）、**人工看**。有一条拦路项要改，结论就是「会被拦住」；有必需项要改，结论是「先改 N 项」；三条以上读不到，结论是「读不到网站」。
 
@@ -129,15 +138,15 @@ payment-guard check 你的域名 --for creem,dodo,waffo --lang zh
 | 平台 | MoR | 一笔刷卡订单的费率 | 大陆个人能否开户 | 审核清单 |
 |---|---|---|---|---|
 | Creem | ✅ | 3.9% + 40 美分 | ✅ 提现到支付宝 | [account reviews](https://docs.creem.io/merchant-of-record/account-reviews/account-reviews) |
-| Waffo Pancake | ✅ | 3.9% + 50 美分 | ✅ 银行卡或支付宝 | [account reviews](https://docs.waffo.ai/mor/account-reviews) |
+| Waffo Pancake | ✅ | 3.9% + 50 美分 | ✅ 银行卡或支付宝（公司目前也按个人收款） | [account reviews](https://docs.waffo.ai/mor/account-reviews) |
 | Dodo Payments | ✅ | 4% + 40 美分；国际 +1.5%，订阅 +0.5% | ✅ 2026 年 3 月起 | [verification process](https://docs.dodopayments.com/miscellaneous/verification-process) |
-| Paddle | ✅ | 5% + 50 美分 | 🟡 大概率能 | [domain verification](https://www.paddle.com/help/start/account-verification/what-is-domain-verification) |
+| Paddle | ✅ | 5% + 50 美分 | ✅ 接受个人和个体经营；可按人民币电汇 | [domain verification](https://www.paddle.com/help/start/account-verification/what-is-domain-verification) |
 | Lemon Squeezy | ✅ | 5% + 50 美分；非美国买家 +1.5%，订阅 +0.5% | ❔ 官方没说；通过 PayPal 出款 | [activate your store](https://docs.lemonsqueezy.com/help/getting-started/activate-your-store) |
 | Gumroad | ✅ | 10% + 50 美分，另加刷卡费 2.9% + 30 美分 | 🟡 通过 PayPal 出款 | 不审网站：产品页由 Gumroad 托管 |
 | Polar | ✅ | 新组织 5% + 50 美分；国际 +1.5% | ⛔ | [account reviews](https://polar.sh/docs/merchant-of-record/account-reviews) |
 | Stripe | – | 美国账户 2.9% + 30 美分；国际卡 +1.5% | ⛔ | [website checklist](https://docs.stripe.com/get-started/checklist/website) |
 
-读取于 2026-10-16。出款周期、押款、审核时长和拒付规则在 `pick` 报告里。
+读取于 2026-10-16 和 10-17。出款周期、押款、审核时长、拒付规则和每家的开户步骤都在 `pick` 报告里。Waffo 是 Waffo Pancake 背后的公司，另有给香港、新加坡、美国注册公司用的收单网关；这个工具覆盖的是 Waffo Pancake。
 
 ## 效果如何
 
@@ -162,7 +171,7 @@ payment-guard check 你的域名 --for creem,dodo,waffo --lang zh
 ## 数据从哪来
 
 - **审核要求、费率、开户条件、出款**：各平台自己的页面，读取于 2026-10-16。报告里每一条都链接到来源；`payment-guard rules` 会全部列出来。
-- **同类产品在用**：2025 年以来开卖的同类产品里，各平台所占的比例。数据来自外链里公开出现的收款链接，全球卖家（比如软件类有 13,746 个）。工具里只带比例：没有网站、标题或链接。页面用脚本打开的结账（Paddle.js、Stripe Checkout）不留链接，所以 Paddle 和嵌入式 Stripe 被低估，Gumroad 和 Stripe 收款链接相对被高估；Waffo 没有统计在内。
+- **同类产品在用**：2025 年以来开卖的同类产品里，各平台所占的比例。数据来自外链里公开出现的收款链接，全球卖家（比如软件类有 13,746 个）。工具里只带比例：没有网站、标题或链接。页面用脚本打开的结账（Paddle.js、Stripe Checkout）不留链接，所以 Paddle 和嵌入式 Stripe 被低估，Gumroad 和 Stripe 收款链接相对被高估；Waffo Pancake 没有统计在内。
 
 ## 让 agent 用
 

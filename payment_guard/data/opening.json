@@ -1,0 +1,665 @@
+{
+  "checked": "2026-10-17",
+  "advice": [
+    {
+      "en": "No registered company: open as an individual. Creem, Dodo Payments and Waffo Pancake take individuals in mainland China, and Paddle accepts individuals and sole traders anywhere outside its sanctions list.",
+      "zh": "没注册公司，就用个人开。Creem、Dodo Payments、Waffo Pancake 都接受中国大陆个人，Paddle 也接受个人和个体经营（制裁名单以外的国家都行）。",
+      "source": "https://www.paddle.com/help/start/account-verification/what-is-account-verification"
+    },
+    {
+      "en": "Dodo's line between the two: an individual is a creator or sole proprietor paid personally, with no company registration or business tax ID; a registered entity has a tax ID and is paid to the company's bank account.",
+      "zh": "Dodo 给的分法：个人是创作者或个体经营，钱进你本人的账户，没有公司注册和税号；注册实体有税号，钱进公司的对公账户。",
+      "source": "https://docs.dodopayments.com/miscellaneous/verification-process"
+    },
+    {
+      "en": "Creem pays a mainland individual to Alipay: up to CNY 50,000 a payout and CNY 300,000–600,000 a year. Past that, a company's bank account.",
+      "zh": "Creem 给大陆个人打款到支付宝：单笔最多 5 万元，每年 30–60 万元。超过这个量，要用公司的对公账户。",
+      "source": "https://docs.creem.io/merchant-of-record/finance/payouts"
+    },
+    {
+      "en": "Stripe opens for neither individuals nor companies in mainland China: a Hong Kong individual account needs a Hong Kong ID number and a US one an SSN or ITIN, so a mainland founder opens with a Hong Kong or US company. Polar pays out only through Stripe, so the same holds.",
+      "zh": "Stripe 不给中国大陆个人或公司开户：香港个人户要香港身份证号，美国个人户要 SSN 或 ITIN，所以大陆创业者要用香港或美国公司开；Polar 只能通过 Stripe 出款，也一样。",
+      "source": "https://support.stripe.com/questions/requirements-for-hong-kong-based-businesses"
+    },
+    {
+      "en": "A company on Waffo Pancake is still paid as a person for now: company payout accounts are 'being finalized', so payouts go to the verified individual.",
+      "zh": "在 Waffo Pancake 用公司开户，目前还是按个人收款：公司收款账户「正在完善」，钱打到验证过身份的个人。",
+      "source": "https://docs.waffo.ai/merchant/identity-kyc.md"
+    },
+    {
+      "en": "Switching later from individual to company means a business verification and a new bank check (Dodo), so pick the one you will keep.",
+      "zh": "以后从个人改成公司，要补公司验证、重新验证银行账户（Dodo 如此），所以按你打算长期用的身份选。",
+      "source": "https://docs.dodopayments.com/miscellaneous/verification-process"
+    },
+    {
+      "en": "How the income is taxed at home is a question for an accountant: this guide covers what the platforms ask for, not tax.",
+      "zh": "收入在国内怎么报税，请问会计：这里只写平台的要求，不涉及税务。",
+      "source": ""
+    }
+  ],
+  "platforms": {
+    "creem": {
+      "signup": "https://www.creem.io",
+      "source": "https://docs.creem.io/merchant-of-record/finance/payout-accounts",
+      "steps": [
+        {
+          "en": "Fill in the business details: your full name as an individual, or the company's name.",
+          "zh": "填业务信息：个人填本人全名，公司填公司名。"
+        },
+        {
+          "en": "Verify your identity (KYC).",
+          "zh": "做身份验证（KYC）。",
+          "only": "individual"
+        },
+        {
+          "en": "Verify your identity (KYC) and the company (KYB).",
+          "zh": "做身份验证（KYC）和公司验证（KYB）。",
+          "only": "company"
+        },
+        {
+          "en": "Add a payout account: Alipay for a mainland individual.",
+          "zh": "添加收款账户：大陆个人用支付宝。",
+          "only": "individual"
+        },
+        {
+          "en": "Add a payout account: the company's bank account.",
+          "zh": "添加收款账户：公司的对公银行账户。",
+          "only": "company"
+        },
+        {
+          "en": "Creem's team reviews the store and the website, in 1–2 working days. A rejection is final for that store and that business, so check the site first.",
+          "zh": "Creem 人工审核店铺和网站，1–2 个工作日。被拒是终局，这个店铺和这家公司都不能再申请，所以先体检网站。"
+        },
+        {
+          "en": "Live payments are turned on.",
+          "zh": "开通正式收款。"
+        }
+      ],
+      "needs": {
+        "individual": [
+          {
+            "en": "an identity document for KYC",
+            "zh": "做 KYC 用的身份证件"
+          },
+          {
+            "en": "an Alipay account in your name",
+            "zh": "本人名下的支付宝"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ],
+        "company": [
+          {
+            "en": "the company's registration documents for KYB",
+            "zh": "做 KYB 用的公司注册文件"
+          },
+          {
+            "en": "the company's bank account",
+            "zh": "公司的对公银行账户"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ]
+      }
+    },
+    "dodo": {
+      "signup": "https://dodopayments.com",
+      "source": "https://docs.dodopayments.com/miscellaneous/verification-process",
+      "steps": [
+        {
+          "en": "Choose the account type: Individual.",
+          "zh": "选账户类型：个人（Individual）。",
+          "only": "individual"
+        },
+        {
+          "en": "Choose the account type: Registered Entity.",
+          "zh": "选账户类型：注册实体（Registered Entity）。",
+          "only": "company"
+        },
+        {
+          "en": "Submit the product information.",
+          "zh": "提交产品信息。"
+        },
+        {
+          "en": "Verify your identity with a government-issued photo ID and a selfie, through Persona: a few minutes, three attempts.",
+          "zh": "用政府签发的带照片证件和自拍做身份验证（Persona）：几分钟，有 3 次机会。"
+        },
+        {
+          "en": "Business verification (KYB): the company registration number with its certificate of incorporation, and IDs for every director and every owner of 10% or more.",
+          "zh": "公司验证（KYB）：公司注册号和注册证书（或当地同等文件），以及每位董事和持股 10% 以上股东的证件。",
+          "only": "company"
+        },
+        {
+          "en": "Add a bank account in the same name as the verified ID; third-party accounts are refused.",
+          "zh": "填银行账户：户名必须和验证过的证件一致，不能用别人的账户。",
+          "only": "individual"
+        },
+        {
+          "en": "Add the company's bank account, in its legal name.",
+          "zh": "填公司的银行账户，户名是公司全称。",
+          "only": "company"
+        },
+        {
+          "en": "The review takes 1–3 business days, with one appeal; payouts start after a separate monitoring review.",
+          "zh": "审核 1–3 个工作日，可以申诉一次；第一次出款前还有一轮单独的监控审核。"
+        }
+      ],
+      "needs": {
+        "individual": [
+          {
+            "en": "a valid, physical photo ID issued by a country on Dodo's accepted list",
+            "zh": "Dodo 可接受国家签发的有效实体带照片证件"
+          },
+          {
+            "en": "a phone or webcam for the selfie",
+            "zh": "能自拍的手机或摄像头"
+          },
+          {
+            "en": "a bank account in your own name",
+            "zh": "本人名下的银行账户"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ],
+        "company": [
+          {
+            "en": "the company registration number and certificate of incorporation (a tax ID is optional)",
+            "zh": "公司注册号和注册证书（税号可选）"
+          },
+          {
+            "en": "IDs for every director and every owner of 10% or more",
+            "zh": "每位董事和持股 10% 以上股东的证件"
+          },
+          {
+            "en": "a bank account in the company's legal name",
+            "zh": "公司名下的银行账户"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ]
+      }
+    },
+    "waffo": {
+      "signup": "https://pancake.waffo.ai/merchant/auth/signin",
+      "source": "https://docs.waffo.ai/settings/business-details.md",
+      "steps": [
+        {
+          "en": "Sign up on the Pancake dashboard with Google, GitHub or a magic link; the first login creates a store. No company registration is needed.",
+          "zh": "在 Pancake 后台用 Google、GitHub 或邮箱链接注册，第一次登录就建好店铺，不需要公司注册。"
+        },
+        {
+          "en": "Build and take test payments in test mode; that needs no review.",
+          "zh": "先在测试模式里接好支付、跑测试付款，这一步不用审核。"
+        },
+        {
+          "en": "In Settings → Business Details, verify the support email (a 6-digit code) and the website's domain (a DNS TXT record, an HTML meta tag, a .well-known file or a matching email domain).",
+          "zh": "在 Settings → Business Details 里验证支持邮箱（6 位验证码）和网站域名（DNS TXT 记录、HTML meta 标签、.well-known 文件或同域名邮箱，四选一）。"
+        },
+        {
+          "en": "Fill in the business details as Individual / Solo developer and submit: the review usually takes 1–3 business days, and the store switches to live payments by itself once approved.",
+          "zh": "按「Individual / Solo developer」填业务信息并提交：审核通常 1–3 个工作日，通过后店铺自动切到正式收款。",
+          "only": "individual"
+        },
+        {
+          "en": "Fill in the business details as Registered business and submit: the review usually takes 1–3 business days, and the store switches to live payments by itself once approved.",
+          "zh": "按「Registered business」填业务信息并提交：审核通常 1–3 个工作日，通过后店铺自动切到正式收款。",
+          "only": "company"
+        },
+        {
+          "en": "Verify your identity on your profile: your legal name exactly as on the ID, and a mainland China national ID (a passport for other nationalities).",
+          "zh": "在个人资料里做身份验证：姓名和证件上一字不差，中国大陆用居民身份证，其他国籍用护照。"
+        },
+        {
+          "en": "Add a payout account: a bank card or Alipay in mainland China (Alipay up to RMB 50,000 a payout and RMB 300,000 a year per recipient). Payouts are in US dollars, 1% (minimum US$10).",
+          "zh": "添加收款账户：中国大陆可以用银行卡或支付宝（支付宝单笔最多 5 万元、每人每年 30 万元）。按美元出款，手续费 1%（最低 10 美元）。",
+          "only": "individual"
+        },
+        {
+          "en": "Company payout accounts are not live yet: payouts still go to the verified person's account, in mainland China, Hong Kong, the US, Japan, South Korea or Singapore.",
+          "zh": "公司收款账户还没开放：目前出款仍然打到验证过身份的个人账户，地区限中国大陆、香港、美国、日本、韩国、新加坡。",
+          "only": "company"
+        },
+        {
+          "en": "Each sale waits about 10 business days before it can be paid out; bank-card payouts requested before 15:00 Beijing time on a business day arrive the same day.",
+          "zh": "每笔收入约 10 个工作日后才能提现；工作日北京时间 15:00 前申请的银行卡提现当天到账。"
+        }
+      ],
+      "needs": {
+        "individual": [
+          {
+            "en": "a mainland China national ID, and your name exactly as on it",
+            "zh": "中国大陆居民身份证，姓名和证件一致"
+          },
+          {
+            "en": "a bank card or Alipay in your own name",
+            "zh": "本人名下的银行卡或支付宝"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ],
+        "company": [
+          {
+            "en": "the company's legal name",
+            "zh": "公司全称"
+          },
+          {
+            "en": "a person whose verified identity receives the payouts for now",
+            "zh": "目前由一位验证过身份的个人收款"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ]
+      }
+    },
+    "paddle": {
+      "signup": "https://www.paddle.com",
+      "source": "https://www.paddle.com/help/start/account-verification/what-is-account-verification",
+      "steps": [
+        {
+          "en": "Sign up, and test in a separate sandbox account (the sandbox needs no domain approval).",
+          "zh": "注册账号，另开一个沙盒账号测试（沙盒不用审域名）。"
+        },
+        {
+          "en": "Submit each checkout domain under My Account → Settings → Website approval. The site must be live on HTTPS and show the product, prices, features, terms, refund and privacy policies; the terms must name you (your legal name as a sole trader) or the company. Most domains pass automatically; a manual review takes 5–7 business days.",
+          "zh": "在 My Account → Settings → Website approval 提交每个结账域名：网站要已上线、用 HTTPS，写清产品、价格、功能、服务条款、退款和隐私政策；条款里要写本人（个体经营写法定姓名）或公司名。大多数域名自动通过，人工审核 5–7 个工作日。"
+        },
+        {
+          "en": "Business verification from your sign-up details: registration documents if asked, and every owner of 25% or more (2–4 business days if manual). Individuals and sole traders skip this step.",
+          "zh": "公司验证：按注册信息核对，可能要注册文件，以及持股 25% 以上的每位股东（人工审核 2–4 个工作日）。个人和个体经营跳过这一步。",
+          "only": "company"
+        },
+        {
+          "en": "Identity verification through Sumsub: a government ID and proof of address if asked, sometimes a short selfie video. It is usually instant.",
+          "zh": "通过 Sumsub 做身份验证：可能要政府签发的证件和地址证明，有时还要一段自拍视频，通常即时完成。"
+        },
+        {
+          "en": "Add payout details: bank transfer or Payoneer. CNY is paid by bank wire; a cross-currency SWIFT payout costs US$15.",
+          "zh": "填出款信息：银行转账或 Payoneer。可以按人民币电汇，跨币种 SWIFT 每笔 15 美元。"
+        },
+        {
+          "en": "Payouts are monthly: the balance above your threshold (minimum US$100) becomes a payout on the 1st and is sent by the 15th.",
+          "zh": "每月出款一次：超过门槛（最低 100 美元）的余额在 1 号生成付款，15 号前打出。"
+        }
+      ],
+      "needs": {
+        "individual": [
+          {
+            "en": "a government ID, and proof of address if asked",
+            "zh": "政府签发的证件，可能还要地址证明"
+          },
+          {
+            "en": "terms of service that name you",
+            "zh": "写着本人名字的服务条款"
+          },
+          {
+            "en": "a live HTTPS website with prices, terms, refund and privacy policies",
+            "zh": "已上线的 HTTPS 网站，有价格、条款、退款和隐私政策"
+          }
+        ],
+        "company": [
+          {
+            "en": "registration documents, and the owners of 25% or more",
+            "zh": "公司注册文件，以及持股 25% 以上的股东"
+          },
+          {
+            "en": "an ID check of at least one owner",
+            "zh": "至少一位股东的身份验证"
+          },
+          {
+            "en": "a live HTTPS website with prices, terms, refund and privacy policies",
+            "zh": "已上线的 HTTPS 网站，有价格、条款、退款和隐私政策"
+          }
+        ]
+      }
+    },
+    "lemonsqueezy": {
+      "signup": "https://www.lemonsqueezy.com",
+      "source": "https://docs.lemonsqueezy.com/help/getting-started/activate-your-store",
+      "steps": [
+        {
+          "en": "A new store starts in test mode.",
+          "zh": "新店铺默认是测试模式。"
+        },
+        {
+          "en": "Click Activate your store: a short questionnaire about the business and its customers, then identity verification (personal details and a photo of a government ID).",
+          "zh": "点「Activate your store」：先填一份关于业务和客户的问卷，再做身份验证（个人信息加政府签发证件的照片）。"
+        },
+        {
+          "en": "KYC and KYB review, usually 2–3 business days.",
+          "zh": "KYC 和 KYB 审核，通常 2–3 个工作日。"
+        },
+        {
+          "en": "Copy the test products to live mode.",
+          "zh": "把测试模式里的产品复制到正式模式。"
+        },
+        {
+          "en": "Set up payouts: a bank account in a supported country, or a verified PayPal account. Mainland China is paid only through PayPal (3% a payout, capped at US$30, outside the US).",
+          "zh": "设置出款：受支持国家的银行账户，或者验证过的 PayPal。中国大陆只能走 PayPal（美国以外每笔 3%，最高 30 美元）。"
+        },
+        {
+          "en": "Submit Form W-8 (outside the US) or W-9 (US); payouts can stay off until you do.",
+          "zh": "提交 W-8（美国以外）或 W-9（美国）税表；不交可能一直不能出款。"
+        },
+        {
+          "en": "Payouts on the 1st and 15th; sales are held 13 days; minimum US$50.",
+          "zh": "每月 1 号和 15 号出款；销售额先押 13 天；最低 50 美元。"
+        }
+      ],
+      "needs": {
+        "individual": [
+          {
+            "en": "a photo of a government ID",
+            "zh": "政府签发证件的照片"
+          },
+          {
+            "en": "a verified PayPal account (from mainland China)",
+            "zh": "验证过的 PayPal 账户（中国大陆）"
+          },
+          {
+            "en": "Form W-8",
+            "zh": "W-8 税表"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ],
+        "company": [
+          {
+            "en": "the company's details for KYB (documents not listed)",
+            "zh": "公司信息（KYB 要哪些文件官方没列）"
+          },
+          {
+            "en": "a bank account in a supported country, or PayPal",
+            "zh": "受支持国家的银行账户，或 PayPal"
+          },
+          {
+            "en": "Form W-8 or W-9",
+            "zh": "W-8 或 W-9 税表"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ]
+      }
+    },
+    "polar": {
+      "signup": "https://polar.sh",
+      "source": "https://polar.sh/docs/merchant-of-record/account-reviews",
+      "steps": [
+        {
+          "en": "Build the integration first: Polar's advice is to build before you submit.",
+          "zh": "先把产品和支付接好：Polar 建议做完再提交审核。"
+        },
+        {
+          "en": "Finance → Account: submit for review (your business, products and how you will use Polar).",
+          "zh": "在 Finance → Account 提交审核：业务、产品和打算怎么用 Polar。"
+        },
+        {
+          "en": "The organization owner verifies identity through Stripe Identity: a passport, ID card or driver's licence, and a selfie.",
+          "zh": "组织所有人通过 Stripe Identity 验证身份：护照、身份证或驾照，加一张自拍。"
+        },
+        {
+          "en": "Connect a payout account through Stripe Connect Express: a bank account in the country you live in and its currency. Wise, Payoneer and Revolut usually fail Stripe's checks.",
+          "zh": "通过 Stripe Connect Express 绑定收款账户：居住国家、本币的银行账户。Wise、Payoneer、Revolut 这类通常过不了 Stripe 的验证。",
+          "only": "individual"
+        },
+        {
+          "en": "Connect a payout account through Stripe Connect Express: a business bank account in the company's country and currency.",
+          "zh": "通过 Stripe Connect Express 绑定收款账户：公司所在国家、本币的对公银行账户。",
+          "only": "company"
+        },
+        {
+          "en": "The first review can take up to 14 days; reviewers may ask for a 100% discount code to try the product.",
+          "zh": "首次审核最长 14 天；审核员可能要一个 100% 折扣码来试用产品。"
+        },
+        {
+          "en": "Withdraw by hand; new organizations have a 7-day settlement delay, and a payout takes 4–7 business days.",
+          "zh": "手动提现；新组织有 7 天结算延迟，到账要 4–7 个工作日。"
+        }
+      ],
+      "needs": {
+        "individual": [
+          {
+            "en": "a passport, ID card or driver's licence, and a selfie",
+            "zh": "护照、身份证或驾照，加自拍"
+          },
+          {
+            "en": "a personal bank account in a country Polar pays out to",
+            "zh": "Polar 支持出款国家的个人银行账户"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ],
+        "company": [
+          {
+            "en": "the owner's ID and a selfie",
+            "zh": "所有人的证件和自拍"
+          },
+          {
+            "en": "a business bank account in the company's country and currency",
+            "zh": "公司所在国家、本币的对公银行账户"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ]
+      }
+    },
+    "stripe": {
+      "signup": "https://dashboard.stripe.com/register",
+      "source": "https://docs.stripe.com/get-started/account/set-up",
+      "steps": [
+        {
+          "en": "Create an account; you can test in a sandbox straight away.",
+          "zh": "注册账号，马上可以在沙盒里测试。"
+        },
+        {
+          "en": "Verify your business in the Dashboard: the business, the product, and your relationship to it. The business country cannot be changed after activation.",
+          "zh": "在后台验证业务：业务信息、产品、你和公司的关系。激活后业务所在国家不能再改。"
+        },
+        {
+          "en": "Company details by country: Hong Kong, the Company or Business Registration Number; the US, an EIN, the person with significant control and every owner of 25% or more (a non-US representative gives a home-country tax ID); the UK, the directors and owners.",
+          "zh": "按国家填公司信息：香港要公司注册号或商业登记号；美国要 EIN、一位有重大控制权的人和持股 25% 以上的每位股东（非美国的负责人提供本国税号）；英国要董事和股东。",
+          "only": "company"
+        },
+        {
+          "en": "Add a bank account in the account's country; its currency must match the payout settings.",
+          "zh": "添加开户国家的银行账户，币种要和出款设置一致。"
+        },
+        {
+          "en": "Work through the go-live checklist (two-step login, statement descriptor, bank details).",
+          "zh": "做完上线清单（两步验证、账单描述、银行信息）。"
+        },
+        {
+          "en": "The first payout usually arrives 7–14 days after the first live payment.",
+          "zh": "第一笔出款通常在第一笔正式收款后 7–14 天到账。"
+        }
+      ],
+      "needs": {
+        "individual": [
+          {
+            "en": "a Hong Kong ID number (Hong Kong) or an SSN or ITIN (US): without one, open with a company",
+            "zh": "香港身份证号（香港）或 SSN、ITIN（美国）：没有的话要用公司开"
+          },
+          {
+            "en": "a live website that meets the review checklist",
+            "zh": "一个已经上线、符合审核清单的网站"
+          }
+        ],
+        "company": [
+          {
+            "en": "the company registration number, or an EIN in the US",
+            "zh": "公司注册号，美国是 EIN"
+          },
+          {
+            "en": "the representative's ID, and an address in that country (no PO box)",
+            "zh": "负责人证件，以及开户国家的地址（不能用信箱）"
+          },
+          {
+            "en": "a bank account in the company's name in that country",
+            "zh": "开户国家、公司名下的银行账户"
+          },
+          {
+            "en": "a public website that matches the product description",
+            "zh": "和产品描述一致的公开网站"
+          }
+        ]
+      }
+    },
+    "gumroad": {
+      "signup": "https://gumroad.com",
+      "source": "https://gumroad.com/help/article/13-getting-paid",
+      "steps": [
+        {
+          "en": "Fill in Payment Settings as Individual: you sell under your own name and have no registration documents.",
+          "zh": "填付款设置，选「个人」：用本人名义卖、没有注册文件。",
+          "only": "individual"
+        },
+        {
+          "en": "Fill in Payment Settings as Business: the representative submits registration documents and personal ID.",
+          "zh": "填付款设置，选「公司」：负责人提交注册文件和个人证件。",
+          "only": "company"
+        },
+        {
+          "en": "Choose a payout method: a local bank account in a listed country, or PayPal where banks are not supported. Mainland China is paid only through PayPal, in US dollars, with a 2% fee; PayPal payouts need no ID upload.",
+          "zh": "选出款方式：受支持国家的本地银行账户，不支持银行的地方用 PayPal。中国大陆只能走 PayPal，按美元，手续费 2%；PayPal 出款不用上传证件。"
+        },
+        {
+          "en": "After some time and sales, Stripe asks for more identity details (date of birth, ID number, a photo ID, proof of address).",
+          "zh": "卖了一段时间后，Stripe 会要求补充身份信息（生日、证件号、证件照片、地址证明）。"
+        },
+        {
+          "en": "An account review comes before the first payout, usually after 3–4 real sales and over US$100; it takes 1–3 weeks. Buying your own product does not speed it up and can get you banned.",
+          "zh": "第一笔出款前有一次账户审核，通常在 3–4 笔真实订单、超过 100 美元之后，需要 1–3 周。自己买自己的产品不会加快审核，还可能被封。"
+        },
+        {
+          "en": "Payouts weekly, monthly or quarterly; minimum US$100; a 7-day hold.",
+          "zh": "按周、月或季度出款；最低 100 美元；押款 7 天。"
+        }
+      ],
+      "needs": {
+        "individual": [
+          {
+            "en": "your full legal name and a physical address",
+            "zh": "法定全名和实际住址"
+          },
+          {
+            "en": "a PayPal account (from mainland China) or a local bank account",
+            "zh": "PayPal 账户（中国大陆）或本地银行账户"
+          }
+        ],
+        "company": [
+          {
+            "en": "registration documents and the company tax ID",
+            "zh": "公司注册文件和税号"
+          },
+          {
+            "en": "a business bank account in the country of registration",
+            "zh": "注册国家的对公银行账户"
+          }
+        ]
+      }
+    }
+  },
+  "registration": [
+    {
+      "key": "hk",
+      "name": {
+        "en": "A Hong Kong private company",
+        "zh": "香港有限公司"
+      },
+      "facts": [
+        {
+          "en": "Incorporating online costs HK$1,545; the business registration fee and levy are paid with it (HK$2,350 for one year from 1 April 2026), so about HK$3,895 in all.",
+          "zh": "网上注册 1,545 港元，商业登记费和征费同时交（2026 年 4 月 1 日起一年 2,350 港元），合计约 3,895 港元。",
+          "source": "https://www.cr.gov.hk/en/faq/local-company/incorporation.htm"
+        },
+        {
+          "en": "Non-residents may incorporate; the registered office must be in Hong Kong.",
+          "zh": "非香港居民也可以注册；注册地址必须在香港。",
+          "source": "https://www.cr.gov.hk/en/faq/local-company/incorporation.htm"
+        },
+        {
+          "en": "At least one director who is a natural person (need not live in Hong Kong) and a company secretary who lives in Hong Kong or is a Hong Kong company; a sole director cannot also be the secretary.",
+          "zh": "至少一名自然人董事（可以不住香港），加一名公司秘书（个人须常住香港，或是香港公司）；唯一的董事不能兼任秘书。",
+          "source": "https://www.cr.gov.hk/en/faq/local-company/directors-secretary.htm"
+        },
+        {
+          "en": "No minimum paid-up capital; electronic certificates are normally issued within an hour.",
+          "zh": "没有最低实缴资本；电子证书通常一小时内发出。",
+          "source": "https://www.cr.gov.hk/en/services/register-company.htm"
+        }
+      ]
+    },
+    {
+      "key": "us",
+      "name": {
+        "en": "A US company through Stripe Atlas",
+        "zh": "用 Stripe Atlas 注册美国公司"
+      },
+      "facts": [
+        {
+          "en": "US$500 once, including Delaware fees and the first year of the registered agent; the agent is US$100 a year after that.",
+          "zh": "一次性 500 美元，含特拉华州政府费和第一年注册代理；之后注册代理每年 100 美元。",
+          "source": "https://stripe.com/atlas"
+        },
+        {
+          "en": "A Delaware C corporation or LLC; Atlas gets the EIN, which takes 10–35 business days for a founder without an SSN.",
+          "zh": "可以选特拉华 C 类公司或 LLC；Atlas 代办 EIN，没有 SSN 的创始人要 10–35 个工作日。",
+          "source": "https://docs.stripe.com/atlas/signup.md"
+        },
+        {
+          "en": "US card payments and payouts (up to US$100,000) can start before the EIN arrives; a franchise tax report is due every year by 1 March.",
+          "zh": "EIN 下来之前就能开通美国卡收款和出款（最多 10 万美元）；每年 3 月 1 日前要交特拉华特许税报告。",
+          "source": "https://docs.stripe.com/atlas/signup.md"
+        },
+        {
+          "en": "Atlas does not guarantee approval for Stripe payments.",
+          "zh": "Atlas 不保证 Stripe 收款一定通过审核。",
+          "source": "https://docs.stripe.com/atlas/signup.md"
+        }
+      ]
+    },
+    {
+      "key": "uk",
+      "name": {
+        "en": "A UK private limited company",
+        "zh": "英国有限公司（Ltd）"
+      },
+      "facts": [
+        {
+          "en": "Registering online with Companies House costs £100 and usually takes 24 hours (by post: £124, 8–10 days).",
+          "zh": "在 Companies House 网上注册 100 英镑，通常 24 小时内完成（邮寄 124 英镑，8–10 天）。",
+          "source": "https://www.gov.uk/limited-company-formation/register-your-company"
+        },
+        {
+          "en": "At least one director aged 16 or over, who need not live in the UK; a UK registered office address is required, and a PO box is not accepted.",
+          "zh": "至少一名 16 岁以上的董事，可以不住英国；必须有英国注册地址，不能用邮政信箱。",
+          "source": "https://www.gov.uk/limited-company-formation/appoint-directors-and-company-secretaries"
+        },
+        {
+          "en": "Directors verify their identity through GOV.UK One Login; the people with significant control (over 25% of shares or votes, for example) are named at registration. No company secretary is needed.",
+          "zh": "董事要通过 GOV.UK One Login 验证身份；注册时要申报重大控制人（比如持股或投票权超过 25%）。不需要公司秘书。",
+          "source": "https://www.gov.uk/limited-company-formation"
+        }
+      ]
+    }
+  ]
+}

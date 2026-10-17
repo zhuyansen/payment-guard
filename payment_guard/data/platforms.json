@@ -1,10 +1,11 @@
 {
- "checked": "2026-10-16",
+ "checked": "2026-10-17",
  "entities": {
   "cn-individual": "an individual in mainland China",
   "cn-company": "a company in mainland China",
   "hk-company": "a Hong Kong company",
-  "us-company": "a US company (LLC or corporation)"
+  "us-company": "a US company (LLC or corporation)",
+  "uk-company": "a UK company (Ltd)"
  },
  "platforms": {
   "stripe": {
@@ -14,8 +15,8 @@
     "percent": 2.9,
     "fixed": 0.3,
     "intl": 1.5,
-    "subscription": 0,
-    "text": "US account: 2.9% + 30¢, international cards +1.5%, currency conversion +1%. Hong Kong: 3.4% + HK$2.35, international +0.5%, conversion +2%."
+    "subscription": 0.7,
+    "text": "US account: 2.9% + 30¢, international cards +1.5%, currency conversion +1%. Hong Kong: 3.4% + HK$2.35, international +0.5%, conversion +2%. UK: international cards 3.15% + 20p, conversion +2%. Subscriptions through Stripe Billing +0.7%."
    },
    "entities": {
     "cn-individual": {
@@ -37,6 +38,11 @@
      "status": "yes",
      "note": "a US bank account and mailing address; a non-US owner without SSN gives a local tax ID",
      "source": "https://support.stripe.com/questions/requirements-to-open-a-stripe-account-in-another-country"
+    },
+    "uk-company": {
+     "status": "yes",
+     "note": "a UK account: UK cards 1.5% + 20p, international cards 3.15% + 20p, +2% if currency conversion is needed",
+     "source": "https://stripe.com/gb/pricing"
     }
    },
    "payout": "to a bank account in the account's country (not a virtual account)",
@@ -48,12 +54,13 @@
     "Not a Merchant of Record: you handle sales tax and VAT yourself, or add Managed Payments (Stripe as MoR, +3.5%, for fully automated digital products; open to businesses in the US, Canada, 31 European countries, Australia, Hong Kong, Japan and Singapore)."
    ],
    "zh": {
-    "fee": "美国账户 2.9% + 30 美分，国际卡 +1.5%，换汇 +1%；香港账户 3.4% + 2.35 港元，国际卡 +0.5%，换汇 +2%。",
+    "fee": "美国账户 2.9% + 30 美分，国际卡 +1.5%，换汇 +1%；香港账户 3.4% + 2.35 港元，国际卡 +0.5%，换汇 +2%；英国账户国际卡 3.15% + 20 便士，换汇 +2%；用 Stripe Billing 收订阅另加 0.7%。",
     "entities": {
      "cn-individual": "不支持中国大陆开户",
      "cn-company": "不支持中国大陆，要用香港或美国公司开",
      "hk-company": "需要香港本地银行账户和地址",
-     "us-company": "需要美国银行账户和通信地址；没有 SSN 的非美国负责人提供本国税号"
+     "us-company": "需要美国银行账户和通信地址；没有 SSN 的非美国负责人提供本国税号",
+     "uk-company": "英国账户：英国卡 1.5% + 20 便士，国际卡 3.15% + 20 便士，需要换汇另加 2%"
     },
     "payout": "打到账户所在国的银行账户（不接受虚拟账户）",
     "review_time": "网站和公司信息核实后激活",
@@ -61,7 +68,28 @@
     "notes": [
      "不是 MoR：销售税和增值税要你自己报，或者开 Managed Payments（Stripe 代收税，每笔多收 3.5%，只卖全自动交付的数字产品；面向美国、加拿大、31 个欧洲国家、澳大利亚、香港、日本和新加坡的商家）。"
     ]
-   }
+   },
+   "fee_by_entity": {
+    "hk-company": {
+     "percent": 3.4,
+     "fixed": 0.3,
+     "intl": 0.5,
+     "source": "https://stripe.com/hk/pricing",
+     "note": "HK$2.35 counted as US$0.30"
+    },
+    "uk-company": {
+     "percent": 3.15,
+     "fixed": 0.27,
+     "intl": 0,
+     "source": "https://stripe.com/gb/pricing",
+     "note": "international card rate; 20p counted as US$0.27"
+    }
+   },
+   "fee_sources": [
+    "https://stripe.com/pricing",
+    "https://stripe.com/hk/pricing",
+    "https://stripe.com/billing/pricing"
+   ]
   },
   "paddle": {
    "name": "Paddle",
@@ -75,14 +103,14 @@
    },
    "entities": {
     "cn-individual": {
-     "status": "likely",
-     "note": "China is not on the blocked list, sole traders can sign up and payouts can be made in CNY; Paddle does not say it in as many words",
-     "source": "https://www.paddle.com/help/start/intro-to-paddle/which-countries-are-supported-by-paddle"
+     "status": "yes",
+     "note": "individuals and sole traders are accepted (they skip business verification), China is not on the unsupported list, and CNY is paid by bank wire",
+     "source": "https://www.paddle.com/help/start/account-verification/what-is-account-verification"
     },
     "cn-company": {
-     "status": "likely",
-     "note": "as for individuals; a business verification step follows",
-     "source": "https://www.paddle.com/help/start/account-verification/what-is-business-verification"
+     "status": "yes",
+     "note": "accepted: business verification asks for registration documents and every owner of 25% or more; CNY is paid by bank wire",
+     "source": "https://www.paddle.com/help/start/account-verification/what-is-account-verification"
     },
     "hk-company": {
      "status": "yes",
@@ -92,6 +120,11 @@
     "us-company": {
      "status": "yes",
      "note": "",
+     "source": "https://www.paddle.com/help/start/intro-to-paddle/which-countries-are-supported-by-paddle"
+    },
+    "uk-company": {
+     "status": "yes",
+     "note": "the UK is not on Paddle's unsupported list; GBP to a UK bank is usually free",
      "source": "https://www.paddle.com/help/start/intro-to-paddle/which-countries-are-supported-by-paddle"
     }
    },
@@ -106,10 +139,11 @@
    "zh": {
     "fee": "5% + 50 美分，全包。",
     "entities": {
-     "cn-individual": "中国不在封禁名单上，个体户可以注册，可以人民币出款；但官方没有明说接受",
-     "cn-company": "同个人；之后还有公司验证",
+     "cn-individual": "接受个人和个体经营（不用做公司验证），中国不在不支持名单上，可以按人民币电汇出款",
+     "cn-company": "接受：公司验证要注册文件和持股 25% 以上的股东；可以按人民币电汇出款",
      "hk-company": "",
-     "us-company": ""
+     "us-company": "",
+     "uk-company": "英国不在 Paddle 的不支持名单上；英镑打到英国银行通常免费"
     },
     "payout": "每月一次，电汇或 Payoneer，最低 100 美元；可以人民币电汇",
     "review_time": "大多数结账域名自动通过；人工审核要 5–7 个工作日",
@@ -149,9 +183,14 @@
      "status": "yes",
      "note": "",
      "source": "https://docs.lemonsqueezy.com/help/getting-started/supported-countries"
+    },
+    "uk-company": {
+     "status": "yes",
+     "note": "the UK is on the bank-payout list; bank payouts outside the US cost 1%",
+     "source": "https://docs.lemonsqueezy.com/help/getting-started/supported-countries"
     }
    },
-   "payout": "twice a month in USD after a 13-day hold, minimum US$50 (bank or PayPal)",
+   "payout": "twice a month in USD after a 13-day hold, minimum US$50; bank payouts outside the US 1%, PayPal 3% capped at US$30",
    "review_time": "2–3 business days",
    "chargebacks": "too many chargebacks can suspend the account; US$15 per dispute",
    "review_doc": "https://docs.lemonsqueezy.com/help/getting-started/activate-your-store",
@@ -165,9 +204,10 @@
      "cn-individual": "只能通过 PayPal 提现到中国大陆；官方没说中国大陆能不能注册",
      "cn-company": "同个人",
      "hk-company": "",
-     "us-company": ""
+     "us-company": "",
+     "uk-company": "英国在银行出款名单上；美国以外的银行出款收 1%"
     },
-    "payout": "每月两次，美元，押款 13 天，最低 50 美元（银行或 PayPal）",
+    "payout": "每月两次按美元出款，先押 13 天，最低 50 美元；美国以外银行出款收 1%，PayPal 收 3%（最高 30 美元）",
     "review_time": "2–3 个工作日",
     "chargebacks": "拒付太多会被停用；每笔争议收 15 美元",
     "notes": [
@@ -205,6 +245,11 @@
      "status": "yes",
      "note": "",
      "source": "https://docs.creem.io/merchant-of-record/supported-countries"
+    },
+    "uk-company": {
+     "status": "yes",
+     "note": "the UK is supported; a business is paid into a business account in its own name",
+     "source": "https://docs.creem.io/merchant-of-record/supported-countries"
     }
    },
    "payout": "1st and 15th of the month after a 7–12-day risk hold; fee US$/€7 or 1%, whichever is higher; minimum US$/€50",
@@ -223,7 +268,8 @@
      "cn-individual": "提现到支付宝，单笔最多 5 万元，每年 30–60 万元",
      "cn-company": "提现到对公银行账户",
      "hk-company": "",
-     "us-company": ""
+     "us-company": "",
+     "uk-company": "支持英国；公司要打到公司名下的对公账户"
     },
     "payout": "每月 1 号和 15 号出款，先押 7–12 天；手续费 7 美元/欧元或 1%，取高者；最低 50 美元/欧元",
     "review_time": "1–2 个工作日",
@@ -264,6 +310,11 @@
      "status": "yes",
      "note": "",
      "source": "https://docs.dodopayments.com/miscellaneous/accepted-countries-and-territories"
+    },
+    "uk-company": {
+     "status": "yes",
+     "note": "the UK is on the accepted list; UK entities also file Form W-8BEN-E, and every director and 10% owner needs an ID from a listed country",
+     "source": "https://docs.dodopayments.com/miscellaneous/verification-process"
     }
    },
    "payout": "SWIFT or local transfer to an account in your own or your company's name, minimum US$50; US$5 under US$1,000; US$25 for USD wires",
@@ -280,7 +331,8 @@
      "cn-individual": "中国在可接受名单上（2026 年 3 月 23 日起）；证件和自拍通过 Persona 核验",
      "cn-company": "每位董事和持股 10% 以上的股东，都要有名单内国家的证件",
      "hk-company": "",
-     "us-company": ""
+     "us-company": "",
+     "uk-company": "英国在可接受名单上；英国公司还要交 W-8BEN-E 税表，每位董事和持股 10% 以上的股东都要有名单内国家的证件"
     },
     "payout": "SWIFT 或本地转账到你本人或公司名下的账户，最低 50 美元；低于 1,000 美元收 5 美元，美元电汇收 25 美元",
     "review_time": "1–3 个工作日；可以申诉一次",
@@ -320,6 +372,11 @@
      "status": "yes",
      "note": "",
      "source": "https://polar.sh/docs/merchant-of-record/supported-countries"
+    },
+    "uk-company": {
+     "status": "yes",
+     "note": "the UK is on the payout list; a UK bank account in GBP through Stripe Connect Express",
+     "source": "https://polar.sh/docs/merchant-of-record/supported-countries"
     }
    },
    "payout": "manual withdrawals, minimum US$10; a 7-day settlement delay for organizations created after 12 May 2026",
@@ -334,7 +391,8 @@
      "cn-individual": "只能通过 Stripe Connect Express 出款，不支持中国大陆",
      "cn-company": "同个人",
      "hk-company": "",
-     "us-company": ""
+     "us-company": "",
+     "uk-company": "英国在出款名单上；通过 Stripe Connect Express 打到英国的英镑账户"
     },
     "payout": "手动提现，最低 10 美元；2026 年 5 月 12 日以后建的组织，款项先押 7 天",
     "review_time": "第一次审核最长 14 天",
@@ -360,21 +418,26 @@
     },
     "cn-company": {
      "status": "yes",
-     "note": "",
-     "source": "https://docs.waffo.ai/mor/supported-countries"
+     "note": "registered businesses can apply, but company payout accounts are not live yet: payouts go to the verified individual's account",
+     "source": "https://docs.waffo.ai/merchant/identity-kyc.md"
     },
     "hk-company": {
      "status": "yes",
-     "note": "",
-     "source": "https://docs.waffo.ai/mor/supported-countries"
+     "note": "registered businesses can apply, but company payout accounts are not live yet: payouts go to the verified individual's account",
+     "source": "https://docs.waffo.ai/merchant/identity-kyc.md"
     },
     "us-company": {
      "status": "yes",
-     "note": "",
+     "note": "registered businesses can apply, but company payout accounts are not live yet: payouts go to the verified individual's account",
+     "source": "https://docs.waffo.ai/merchant/identity-kyc.md"
+    },
+    "uk-company": {
+     "status": "no",
+     "note": "no payouts to the UK: Waffo Pancake pays out only in mainland China, Hong Kong, the US, Japan, South Korea and Singapore",
      "source": "https://docs.waffo.ai/mor/supported-countries"
     }
    },
-   "payout": "after about 10 business days; 1% (minimum US$10); to mainland China, Hong Kong, the US, Japan, Korea and Singapore only",
+   "payout": "after about 10 business days; 1% (minimum US$10); to mainland China (bank card or Alipay, Alipay up to RMB 50,000 a payout and RMB 300,000 a year), Hong Kong, the US, Japan, Korea and Singapore only",
    "review_time": "1–3 business days",
    "chargebacks": "",
    "review_doc": "https://docs.waffo.ai/mor/account-reviews",
@@ -387,11 +450,12 @@
     "fee": "3.9% + 50 美分，没有国际和订阅附加费。",
     "entities": {
      "cn-individual": "提现到中国大陆的银行卡或支付宝",
-     "cn-company": "",
-     "hk-company": "",
-     "us-company": ""
+     "cn-company": "公司可以申请，但公司收款账户还没开放：钱打到验证过身份的个人账户",
+     "hk-company": "公司可以申请，但公司收款账户还没开放：钱打到验证过身份的个人账户",
+     "us-company": "公司可以申请，但公司收款账户还没开放：钱打到验证过身份的个人账户",
+     "uk-company": "不出款到英国：Waffo Pancake 只出款到中国大陆、香港、美国、日本、韩国和新加坡"
     },
-    "payout": "约 10 个工作日后出款；手续费 1%（最低 10 美元）；只能提现到中国大陆、香港、美国、日本、韩国和新加坡",
+    "payout": "约 10 个工作日后出款；手续费 1%（最低 10 美元）；只能提现到中国大陆（银行卡或支付宝，支付宝单笔最多 5 万元、每年 30 万元）、香港、美国、日本、韩国和新加坡",
     "review_time": "1–3 个工作日",
     "chargebacks": "",
     "notes": [
@@ -429,10 +493,15 @@
      "status": "yes",
      "note": "",
      "source": "https://gumroad.com/help/article/13-getting-paid"
+    },
+    "uk-company": {
+     "status": "yes",
+     "note": "UK bank payouts in GBP; a business must use a bank account in its country of registration",
+     "source": "https://gumroad.com/help/article/13-getting-paid"
     }
    },
-   "payout": "to a bank account, or PayPal where banks are not supported",
-   "review_time": "no website review: Gumroad hosts the product page",
+   "payout": "to a local bank account in a listed country, or PayPal where banks are not supported (US dollars, 2%); minimum US$100, a 7-day hold",
+   "review_time": "no website review: Gumroad hosts the product page; an account review of 1–3 weeks before the first payout",
    "chargebacks": "",
    "review_doc": "",
    "aup": "",
@@ -445,10 +514,11 @@
      "cn-individual": "提现到中国大陆只能走 PayPal",
      "cn-company": "提现到中国大陆只能走 PayPal",
      "hk-company": "",
-     "us-company": ""
+     "us-company": "",
+     "uk-company": "可以按英镑打到英国银行；公司要用注册国家的银行账户"
     },
-    "payout": "打到银行账户；银行不支持的地区走 PayPal",
-    "review_time": "不审网站：商品页由 Gumroad 托管",
+    "payout": "打到受支持国家的本地银行账户，不支持银行的地方用 PayPal（美元，2%）；最低 100 美元，押款 7 天",
+    "review_time": "不审网站：产品页由 Gumroad 托管；第一笔出款前有 1–3 周的账户审核",
     "chargebacks": "",
     "notes": [
      "2025 年起是 MoR；这个工具没核对它的禁售清单，所以类目一栏都显示「政策没提」。"
@@ -460,6 +530,7 @@
   "cn-individual": "中国大陆个人",
   "cn-company": "中国大陆公司",
   "hk-company": "香港公司",
-  "us-company": "美国公司（LLC 或股份公司）"
+  "us-company": "美国公司（LLC 或股份公司）",
+  "uk-company": "英国公司（Ltd）"
  }
 }

@@ -185,7 +185,8 @@ def test_an_ai_app_shows_how_each_platform_treats_it():
     result = pick.pick("cn-individual", "ai-app")
     fit = {r["platform"]: r["fit"] for r in result["rows"]}
     assert fit["creem"] == "restricted" and fit["dodo"] == "review" and fit["paddle"] == "allowed"
-    assert result["rows"][0]["platform"] == "dodo" and "Creem lists generative AI" in result["category_note"]
+    # Paddle takes individuals and restricts only face and likeness generation, so it leads; Dodo reviews AI tools
+    assert result["rows"][0]["platform"] == "paddle" and "Creem lists generative AI" in result["category_note"]
     assert "Creem" in pick.pick("cn-individual", "ai-app", lang="zh")["category_note"]
 
 
@@ -233,6 +234,52 @@ def test_the_chinese_report_has_no_english_left_but_the_quotes(acme, monkeypatch
                 said = zh.evidence(r["evidence"])
                 assert not ENGLISH_LEFT.search(said.replace("swap faces in seconds", "")), (key, r["check"], said)
     assert "（禁止）：swap faces" in zh.evidence(check.categories(bare, "creem")[1])
+
+
+def test_opening_steps_follow_who_holds_the_account():
+    person, company = pick.how_to_open("dodo", "cn-individual", "en"), pick.how_to_open("dodo", "hk-company", "en")
+    assert any("Individual" in s for s in person["steps"]) and not any("KYB" in s for s in person["steps"])
+    assert any("KYB" in s for s in company["steps"]) and person["source"].startswith("https://docs.dodopayments.com")
+    assert pick.how_to_open("not-a-platform", "cn-individual", "en") == {}
+
+
+def test_pick_without_an_entity_assumes_an_individual_and_says_so(capsys):
+    assert cli.main(["pick", "--product", "saas", "--lang", "zh"]) == 0
+    out = capsys.readouterr().out
+    assert "没填 --entity" in out and "## 个人还是公司" in out and "## 怎么开户" in out
+    assert cli.main(["pick", "--entity", "us-company", "--product", "saas"]) == 0
+    assert "Individual or company" not in capsys.readouterr().out
+
+
+def test_stripe_is_charged_on_the_account_the_holder_opens():
+    us = next(r for r in pick.pick("us-company", "saas")["rows"] if r["platform"] == "stripe")
+    hk = next(r for r in pick.pick("hk-company", "saas")["rows"] if r["platform"] == "stripe")
+    assert us["keep"] == round(20 * (1 - (2.9 + 1.5 + 0.7) / 100) - 0.3, 2) and hk["keep"] > us["keep"]
+
+
+def test_a_uk_company_and_registration_facts():
+    rows = {r["platform"]: r for r in pick.pick("uk-company", "saas")["rows"]}
+    out = {r["platform"] for r in pick.pick("uk-company", "saas")["excluded"]}
+    assert "stripe" in rows and "polar" in rows and "waffo" in out          # Waffo Pancake pays out nowhere in the UK
+    assert rows["stripe"]["keep"] == round(20 * (1 - (3.15 + 0.7) / 100) - 0.27, 2)
+    regs = {r["key"]: r for r in pick.opening()["registration"]}
+    assert set(regs) == {"hk", "us", "uk"} and all(f["source"].startswith("https://") for r in regs.values() for f in r["facts"])
+
+
+def test_every_platform_has_opening_steps_for_both_holders():
+    for key in pick.platforms()["platforms"]:
+        for entity in ("cn-individual", "us-company"):
+            o = pick.how_to_open(key, entity, "zh")
+            assert o["steps"] and o["needs"] and o["source"].startswith("https://"), (key, entity)
+
+
+def test_the_export_holds_every_holder_and_product(capsys):
+    assert cli.main(["export"]) == 0
+    data = json.loads(capsys.readouterr().out)
+    assert len(data["picks"]) == len(data["entities"]) * len(data["products"])
+    table = data["picks"]["cn-individual|saas"]
+    assert {x["platform"] for x in table["excluded"]} == {"stripe", "polar"} and table["rows"][0]["keep"] > 0
+    assert data["platforms"]["dodo"]["opening"]["company"]["zh"]["steps"] and data["usage"]["caveat"]["zh"]
 
 
 def test_the_data_is_complete():

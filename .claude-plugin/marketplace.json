@@ -7,7 +7,7 @@
       "name": "payment-guard",
       "source": "./",
       "description": "Pick a payment platform you can actually open and check your website against its published review requirements before you apply: Creem, Dodo Payments, Waffo, Paddle, Lemon Squeezy, Polar, Stripe, Gumroad.",
-      "version": "0.1.0"
+      "version": "0.2.0"
     }
   ]
 }

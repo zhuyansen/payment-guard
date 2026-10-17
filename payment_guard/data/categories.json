@@ -22,9 +22,9 @@
         "waffo": "prohibited",
         "gumroad": "unknown"
       },
-      "note": "Stripe Managed Payments excludes professional services; software that books or matches people is fine on Waffo",
+      "note": "Stripe Managed Payments excludes professional services; software that books or matches people is fine on Waffo Pancake",
       "look_only": true,
-      "note_zh": "Stripe Managed Payments 不包括专业服务；在 Waffo 上，帮人预约或撮合的软件没问题"
+      "note_zh": "Stripe Managed Payments 不包括专业服务；在 Waffo Pancake 上，帮人预约或撮合的软件没问题"
     },
     "physical_goods": {
       "label": "Physical goods that ship",
@@ -87,7 +87,7 @@
         "waffo": "restricted",
         "gumroad": "unknown"
       },
-      "note": "Waffo takes fictional and anime characters on every channel; real-looking human likenesses on cards only"
+      "note": "Waffo Pancake takes fictional and anime characters on every channel; real-looking human likenesses on cards only"
     },
     "deepfake": {
       "label": "Face swap, deepfake or voice cloning",
@@ -118,8 +118,8 @@
         "waffo": "restricted",
         "gumroad": "unknown"
       },
-      "note": "Paddle restricts realistic human-face generation; Creem wants its moderation running in production; Waffo wants the real model names and a moderation workflow published",
-      "note_zh": "Paddle 限制逼真人脸生成；Creem 要求审核接口在生产环境运行；Waffo 要求公开写明实际模型和审核流程"
+      "note": "Paddle restricts realistic human-face generation; Creem wants its moderation running in production; Waffo Pancake wants the real model names and a moderation workflow published",
+      "note_zh": "Paddle 限制逼真人脸生成；Creem 要求审核接口在生产环境运行；Waffo Pancake 要求公开写明实际模型和审核流程"
     },
     "ai_text": {
       "label": "AI text, chat or voice generation",
@@ -136,8 +136,8 @@
         "gumroad": "unknown"
       },
       "look_only": true,
-      "note": "Dodo and Polar review AI content generation tools (text, image, video, voice); Creem lists generative AI products as restricted, with image and video tools as its examples; Waffo takes AI-generated content after an extra review if the content says it is AI-generated; Paddle restricts only face, likeness and voice-impersonation generation, and Lemon Squeezy bans NSFW chatbots",
-      "note_zh": "Dodo 和 Polar 对 AI 内容生成工具（文本、图片、视频、语音）要人工审核；Creem 把生成式 AI 产品列为受限，举的例子是图片和视频工具；Waffo 接受 AI 生成内容，但要额外审核并标明内容由 AI 生成；Paddle 只限制人脸、肖像和声音冒充类生成，Lemon Squeezy 禁止色情聊天机器人"
+      "note": "Dodo and Polar review AI content generation tools (text, image, video, voice); Creem lists generative AI products as restricted, with image and video tools as its examples; Waffo Pancake takes AI-generated content after an extra review if the content says it is AI-generated; Paddle restricts only face, likeness and voice-impersonation generation, and Lemon Squeezy bans NSFW chatbots",
+      "note_zh": "Dodo 和 Polar 对 AI 内容生成工具（文本、图片、视频、语音）要人工审核；Creem 把生成式 AI 产品列为受限，举的例子是图片和视频工具；Waffo Pancake 接受 AI 生成内容，但要额外审核并标明内容由 AI 生成；Paddle 只限制人脸、肖像和声音冒充类生成，Lemon Squeezy 禁止色情聊天机器人"
     },
     "ai_account_resale": {
       "label": "Topping up or reselling other AI services' accounts, memberships or API access",

@@ -10,9 +10,13 @@ For people who sell software, SaaS, AI tools, templates, courses or e-books onli
 
 ```bash
 pip install "git+https://github.com/zhuyansen/payment-guard"
-payment-guard pick --entity cn-individual --product saas
+payment-guard pick --product saas
 payment-guard check yoursite.com --for creem,dodo,waffo
 ```
+
+No registered company? Leave out `--entity`: the report assumes an individual in mainland China and starts with what the platforms say about opening as an individual or as a company.
+
+No install: the same data runs a two-click [payment platform picker](https://jasonzhu.ai/en/go-global/payments) on jasonzhu.ai ([in Chinese](https://jasonzhu.ai/zh/go-global/payments)).
 
 Python 3.10 or newer, no dependencies, no keys, free. `uvx --from git+https://github.com/zhuyansen/payment-guard payment-guard pick …` runs it without installing. Add `--lang zh` for a report in Chinese and `--json` for scripts and agents. It reads public pages only: it never signs up, logs in or submits anything.
 
@@ -40,8 +44,8 @@ payment-guard pick --entity cn-individual --product saas
 |---|---|---|---|---|---|
 | Creem | ✅ yes | ✅ allowed | ✅ | $18.82 | 1.1% |
 | Waffo Pancake | ✅ yes | ✅ allowed | ✅ | $18.72 | – |
+| Paddle | ✅ yes | ✅ allowed | ✅ | $18.50 | 0.3% (undercounted) |
 | Dodo Payments | ✅ yes | ✅ allowed | ✅ | $18.40 | 2.0% |
-| Paddle | 🟡 likely | ✅ allowed | ✅ | $18.50 | 0.3% (undercounted) |
 | Gumroad | 🟡 likely | ✅ allowed | ✅ | $16.62 | 18.7% |
 | Lemon Squeezy | ❔ not stated | ✅ allowed | ✅ | $18.10 | 10.9% |
 
@@ -61,11 +65,16 @@ Left out:
 ```
 
 - **Can you open it**: `yes`, `likely` (the platform's pages imply it without saying it in as many words), `not stated`, or `no`, from each platform's supported-country and payout pages. For `likely` and `not stated`, ask the platform's support before you build on it.
-- **Takes this product**: `allowed`, `not addressed`, `needs review`, `restricted` or `prohibited`, from its acceptable use policy. For an AI app, Dodo and Polar review AI content generation tools, and Creem and Waffo restrict generative AI; `pick --product ai-app` says so under the table.
+- **Takes this product**: `allowed`, `not addressed`, `needs review`, `restricted` or `prohibited`, from its acceptable use policy. For an AI app, Dodo and Polar review AI content generation tools, and Creem and Waffo Pancake restrict generative AI; `pick --product ai-app` says so under the table.
 - **You keep from $20 abroad**: one US$20 sale to a buyer in another country, after the percentage, the fixed fee and the international and subscription surcharges. Currency conversion and payout fees are listed per platform, not subtracted.
 - **Sellers like you use it**: see [where the shares come from](#where-the-numbers-come-from).
+- **How to open an account**: the report ends with the steps and what to have ready, as an individual or as a company, for the first three platforms whose onboarding was read, with the sign-up link and the official guide.
 
-Who holds the account: `cn-individual`, `cn-company`, `hk-company`, `us-company`. What you sell: `saas`, `software`, `ai-app`, `ai-media`, `template`, `course`, `ebook`, `service`, `physical`, `donation`. `--mor` keeps Merchants of Record only; `--site yoursite.com` also checks your site against the top three.
+Who holds the account: `cn-individual`, `cn-company`, `hk-company`, `us-company`, `uk-company`. What you sell: `saas`, `software`, `ai-app`, `ai-media`, `template`, `course`, `ebook`, `service`, `physical`, `donation`. `--mor` keeps Merchants of Record only; `--site yoursite.com` also checks your site against the top three.
+
+## For a web page: `export`
+
+`payment-guard export` prints everything `pick` knows as one JSON file: each platform's facts in English and Chinese, and the ranked table for every holder and product. A page built on it needs no rules of its own, so it cannot disagree with the command.
 
 ## 2. Will the site pass: `check`
 
@@ -106,7 +115,7 @@ Requirements: https://docs.dodopayments.com/miscellaneous/verification-process
 - ✋ **The site matches what you tell the platform: name, description, prices, delivery** (check yourself)
 ```
 
-The terms of this site do say that plans renew automatically, but Waffo asks for it on the pricing page, so Waffo's line stays a fix.
+The terms of this site do say that plans renew automatically, but Waffo Pancake asks for it on the pricing page, so Waffo Pancake's line stays a fix.
 
 Each line is a pass ✅, a fix ❌, a look 🔍 (a mention that may not apply), unknown ❔ (the page could not be read) or check yourself ✋, and carries a level: **blocker**, **required** (on the platform's own list), **advised** (not on its list, but other platforms ask) or **check yourself**. A blocker fix makes the verdict `blocked`, a required fix `fix N first`; three unknowns make it `unreadable`.
 
@@ -129,15 +138,15 @@ Which of these each platform asks for, and at what level, is in `payment-guard r
 | Platform | Merchant of Record | Fee on one card sale | Mainland China individual | Review list |
 |---|---|---|---|---|
 | Creem | ✅ | 3.9% + 40¢ | ✅ payouts to Alipay | [account reviews](https://docs.creem.io/merchant-of-record/account-reviews/account-reviews) |
-| Waffo Pancake | ✅ | 3.9% + 50¢ | ✅ bank card or Alipay | [account reviews](https://docs.waffo.ai/mor/account-reviews) |
+| Waffo Pancake | ✅ | 3.9% + 50¢ | ✅ bank card or Alipay (companies are still paid as a person) | [account reviews](https://docs.waffo.ai/mor/account-reviews) |
 | Dodo Payments | ✅ | 4% + 40¢; international +1.5%, subscriptions +0.5% | ✅ since March 2026 | [verification process](https://docs.dodopayments.com/miscellaneous/verification-process) |
-| Paddle | ✅ | 5% + 50¢ | 🟡 likely | [domain verification](https://www.paddle.com/help/start/account-verification/what-is-domain-verification) |
+| Paddle | ✅ | 5% + 50¢ | ✅ individuals and sole traders; CNY by bank wire | [domain verification](https://www.paddle.com/help/start/account-verification/what-is-domain-verification) |
 | Lemon Squeezy | ✅ | 5% + 50¢; non-US buyers +1.5%, subscriptions +0.5% | ❔ not stated; payouts through PayPal | [activate your store](https://docs.lemonsqueezy.com/help/getting-started/activate-your-store) |
 | Gumroad | ✅ | 10% + 50¢ plus 2.9% + 30¢ card processing | 🟡 payouts through PayPal | none: Gumroad hosts the product page |
 | Polar | ✅ | 5% + 50¢ for new organizations; international +1.5% | ⛔ | [account reviews](https://polar.sh/docs/merchant-of-record/account-reviews) |
 | Stripe | – | US account 2.9% + 30¢; international cards +1.5% | ⛔ | [website checklist](https://docs.stripe.com/get-started/checklist/website) |
 
-Read on 2026-10-16. Payout schedules, holds, review times and chargeback rules are in the `pick` report.
+Read on 2026-10-16 and 2026-10-17. Payout schedules, holds, review times, chargeback rules and the steps to open each account are in the `pick` report. Waffo, the company behind Waffo Pancake, also runs a payment gateway for companies registered in Hong Kong, Singapore or the US; this tool covers Waffo Pancake.
 
 ## How well it works
 
@@ -162,7 +171,7 @@ To see whether it misreads real sites, it was run on 60 sites that Creem, Dodo P
 ## Where the numbers come from
 
 - **Requirements, fees, eligibility, payouts**: each platform's own pages, read on 2026-10-16. Every line in a report links to its source; `payment-guard rules` prints them all.
-- **Sellers like you use it**: the share of each platform among sellers of the same kind of product who started selling since 2025, counted from public checkout links found in backlink data, worldwide (13,746 software sellers, for example). Only the shares ship with the tool: no site, no title, no link. Checkouts that a page opens with a script (Paddle.js, Stripe Checkout sessions) leave no link, so Paddle and embedded Stripe are undercounted and Gumroad and Stripe Payment Links overcounted; Waffo is not counted.
+- **Sellers like you use it**: the share of each platform among sellers of the same kind of product who started selling since 2025, counted from public checkout links found in backlink data, worldwide (13,746 software sellers, for example). Only the shares ship with the tool: no site, no title, no link. Checkouts that a page opens with a script (Paddle.js, Stripe Checkout sessions) leave no link, so Paddle and embedded Stripe are undercounted and Gumroad and Stripe Payment Links overcounted; Waffo Pancake is not counted.
 
 ## Use it from an agent
 

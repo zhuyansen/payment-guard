@@ -94,7 +94,7 @@ def topics(f: dict, role: str, key: str) -> tuple[str, str]:
 
 
 def generates_media(f: dict) -> bool:
-    """Creem's AI wrapper rules and Waffo's AIGC rules both cover AI image and video generation only."""
+    """Creem's AI wrapper rules and Waffo Pancake's AIGC rules both cover AI image and video generation only."""
     return bool(f["ai_media"])
 
 
