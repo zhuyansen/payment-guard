@@ -9,7 +9,7 @@ For people who sell software, SaaS, AI tools, templates, courses or e-books onli
 ## Quick start
 
 ```bash
-pip install "git+https://github.com/zhuyansen/payment-guard"
+pip install payment-guard
 payment-guard pick --product saas
 payment-guard check yoursite.com --for creem,dodo,waffo
 ```
@@ -18,7 +18,7 @@ No registered company? Leave out `--entity`: the report assumes an individual in
 
 No install: the same data runs a two-click [payment platform picker](https://jasonzhu.ai/en/go-global/payments) on jasonzhu.ai ([in Chinese](https://jasonzhu.ai/zh/go-global/payments)).
 
-Python 3.10 or newer, no dependencies, no keys, free. `uvx --from git+https://github.com/zhuyansen/payment-guard payment-guard pick …` runs it without installing. Add `--lang zh` for a report in Chinese and `--json` for scripts and agents. It reads public pages only: it never signs up, logs in or submits anything.
+Python 3.10 or newer, no dependencies, no keys, free. `uvx payment-guard pick …` runs it without installing. Add `--lang zh` for a report in Chinese and `--json` for scripts and agents. It reads public pages only: it never signs up, logs in or submits anything.
 
 ## Why
 

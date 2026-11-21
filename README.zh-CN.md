@@ -9,7 +9,7 @@
 ## 快速上手
 
 ```bash
-pip install "git+https://github.com/zhuyansen/payment-guard"
+pip install payment-guard
 payment-guard pick --product saas --lang zh
 payment-guard check 你的域名 --for creem,dodo,waffo --lang zh
 ```
@@ -18,7 +18,7 @@ payment-guard check 你的域名 --for creem,dodo,waffo --lang zh
 
 不想装：同一份数据做成了网页版[收款平台选择器](https://jasonzhu.ai/zh/go-global/payments)，点两下就出结果。
 
-Python 3.10 及以上，零依赖，不要 key，免费。不想安装可以用 `uvx --from git+https://github.com/zhuyansen/payment-guard payment-guard pick …`。`--lang zh` 输出中文报告，`--json` 给脚本和 agent 用。它只读公开页面：不注册、不登录、不提交任何东西。
+Python 3.10 及以上，零依赖，不要 key，免费。不想安装可以用 `uvx payment-guard pick …`。`--lang zh` 输出中文报告，`--json` 给脚本和 agent 用。它只读公开页面：不注册、不登录、不提交任何东西。
 
 ## 为什么做
 

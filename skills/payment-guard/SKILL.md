@@ -9,7 +9,7 @@ Two jobs, in this order: which platforms the user can open at all and which take
 
 ## Before you run anything
 
-1. Find the tool, in this order: the `payment-guard` command (installed with `pip install "git+https://github.com/zhuyansen/payment-guard"`); `uvx --from git+https://github.com/zhuyansen/payment-guard payment-guard` when `uv` is there; else clone https://github.com/zhuyansen/payment-guard and run `python -m payment_guard` from that folder. Python 3.10 or newer, no dependencies, no keys, free.
+1. Find the tool, in this order: the `payment-guard` command (installed with `pip install payment-guard`); `uvx payment-guard` when `uv` is there; else clone https://github.com/zhuyansen/payment-guard and run `python -m payment_guard` from that folder. Python 3.10 or newer, no dependencies, no keys, free.
 2. Ask what you do not know, in one message and in plain words: do they have a registered company, and where (mainland China, Hong Kong, the US, the UK); what do they sell; is the website live, and at what address. Map the answers to `--entity` (`cn-individual`, `cn-company`, `hk-company`, `us-company`, `uk-company`) and `--product` (`saas`, `software`, `ai-app`, `ai-media`, `template`, `course`, `ebook`, `service`, `physical`, `donation`) yourself; do not make a beginner pick a flag. No registered company means an individual. If they do not know, run `pick` without `--entity`: it assumes an individual in mainland China and starts with what the platforms say about individuals and companies. Answer in the user's language; add `--lang zh` for a Chinese report.
 
 ## 1. Which platform: pick
