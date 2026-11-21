@@ -4,7 +4,7 @@
 
 先挑一个你**真能开户**的收款平台，再在**提交审核之前**，按这个平台公开的审核清单把你的网站逐条查一遍。
 
-给在网上卖软件、SaaS、AI 工具、模板、课程、电子书的人用，尤其是中国大陆和香港的卖家：大陆个人开不了 Stripe 和 Polar，能选的基本是 PayPal.cn 或代收税的 MoR 平台（Creem、Dodo Payments、Waffo Pancake、Paddle、Lemon Squeezy、Gumroad），而每家要求网站上写的东西都不一样。
+给在网上卖软件、SaaS、AI 工具、模板、课程、电子书的人用，尤其是中国大陆和香港的卖家：大陆个人开不了 Stripe 和 Polar，能选的基本是 PayPal.cn 或代收税的 MoR 平台（Creem、Dodo Payments、Waffo Pancake、Paddle、Gumroad；Lemon Squeezy 2026 年 11 月 16 日起不收新店），而每家要求网站上写的东西都不一样。
 
 ## 快速上手
 
@@ -48,12 +48,10 @@ payment-guard pick --entity cn-individual --product saas --lang zh
 | Paddle | ✅ 能 | ✅ 允许 | ✅ | $18.50 | 0.3%（低估） |
 | Dodo Payments | ✅ 能 | ✅ 允许 | ✅ | $18.40 | 2.0% |
 | Gumroad | 🟡 大概率能 | ✅ 允许 | ✅ | $16.62 | 18.7% |
-| Lemon Squeezy | ❔ 官方没说 | ✅ 允许 | ✅ | $18.10 | 10.9% |
-
-⚠️ Lemon Squeezy：Lemon Squeezy 的 CEO 在 2026 年 1 月 28 日的官方博客里说，团队忙着做 Stripe 自己的代收税平台 Stripe Managed Payments，客服回复变慢、产品更新变少，目标是让 Lemon Squeezy 的用户能轻松迁移过去。现在新接入要考虑到这一点。（https://www.lemonsqueezy.com/blog/2026-update）
 
 不考虑的：
 - Stripe：不支持中国大陆开户（https://stripe.com/global）
+- Lemon Squeezy：2026 年 11 月 16 日起不再接受新店注册，2027 年 3 月 31 日停止收款（https://www.lemonsqueezy.com/blog/saying-goodbye-to-lemon-squeezy）
 - Polar：只能通过 Stripe Connect Express 出款，不支持中国大陆（https://polar.sh/docs/merchant-of-record/supported-countries）
 
 ## 每家的细节
@@ -144,7 +142,7 @@ payment-guard check 你的域名 --for creem,dodo,waffo --lang zh
 | Waffo Pancake | ✅ | 3.9% + 50 美分 | ✅ 银行卡或支付宝（公司目前也按个人收款） | [account reviews](https://docs.waffo.ai/mor/account-reviews) |
 | Dodo Payments | ✅ | 4% + 40 美分；国际 +1.5%，订阅 +0.5% | ✅ 2026 年 3 月起 | [verification process](https://docs.dodopayments.com/miscellaneous/verification-process) |
 | Paddle | ✅ | 5% + 50 美分 | ✅ 接受个人和个体经营；可按人民币电汇 | [domain verification](https://www.paddle.com/help/start/account-verification/what-is-domain-verification) |
-| Lemon Squeezy | ✅ | 5% + 50 美分；非美国买家 +1.5%，订阅 +0.5% | ❔ 官方没说；通过 PayPal 出款 | [activate your store](https://docs.lemonsqueezy.com/help/getting-started/activate-your-store) |
+| Lemon Squeezy | ✅ | 5% + 50 美分；非美国买家 +1.5%，订阅 +0.5% | ⛔ 2026-11-16 起不收新店，2027-03-31 关停 | [activate your store](https://docs.lemonsqueezy.com/help/getting-started/activate-your-store) |
 | Gumroad | ✅ | 10% + 50 美分，另加刷卡费 2.9% + 30 美分 | 🟡 通过 PayPal 出款 | 不审网站：产品页由 Gumroad 托管 |
 | Polar | ✅ | 新组织 5% + 50 美分；国际 +1.5% | ⛔ | [account reviews](https://polar.sh/docs/merchant-of-record/account-reviews) |
 | Stripe | – | 美国账户 2.9% + 30 美分；国际卡 +1.5% | ⛔ | [website checklist](https://docs.stripe.com/get-started/checklist/website) |

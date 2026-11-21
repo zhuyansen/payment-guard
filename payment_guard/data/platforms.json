@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-17",
+ "checked": "2026-11-21",
  "entities": {
   "cn-individual": "an individual in mainland China",
   "cn-company": "a company in mainland China",
@@ -165,29 +165,29 @@
    },
    "entities": {
     "cn-individual": {
-     "status": "unverified",
-     "note": "payouts reach mainland China only through PayPal; signing up from mainland China is not stated",
-     "source": "https://docs.lemonsqueezy.com/help/getting-started/supported-countries"
+     "status": "no",
+     "note": "stopped taking new stores on 16 November 2026 and stops processing payments on 31 March 2027",
+     "source": "https://www.lemonsqueezy.com/blog/saying-goodbye-to-lemon-squeezy"
     },
     "cn-company": {
-     "status": "unverified",
-     "note": "as for individuals",
-     "source": "https://docs.lemonsqueezy.com/help/getting-started/supported-countries"
+     "status": "no",
+     "note": "stopped taking new stores on 16 November 2026 and stops processing payments on 31 March 2027",
+     "source": "https://www.lemonsqueezy.com/blog/saying-goodbye-to-lemon-squeezy"
     },
     "hk-company": {
-     "status": "yes",
-     "note": "",
-     "source": "https://docs.lemonsqueezy.com/help/getting-started/supported-countries"
+     "status": "no",
+     "note": "stopped taking new stores on 16 November 2026 and stops processing payments on 31 March 2027",
+     "source": "https://www.lemonsqueezy.com/blog/saying-goodbye-to-lemon-squeezy"
     },
     "us-company": {
-     "status": "yes",
-     "note": "",
-     "source": "https://docs.lemonsqueezy.com/help/getting-started/supported-countries"
+     "status": "no",
+     "note": "stopped taking new stores on 16 November 2026 and stops processing payments on 31 March 2027",
+     "source": "https://www.lemonsqueezy.com/blog/saying-goodbye-to-lemon-squeezy"
     },
     "uk-company": {
-     "status": "yes",
-     "note": "the UK is on the bank-payout list; bank payouts outside the US cost 1%",
-     "source": "https://docs.lemonsqueezy.com/help/getting-started/supported-countries"
+     "status": "no",
+     "note": "stopped taking new stores on 16 November 2026 and stops processing payments on 31 March 2027",
+     "source": "https://www.lemonsqueezy.com/blog/saying-goodbye-to-lemon-squeezy"
     }
    },
    "payout": "twice a month in USD after a 13-day hold, minimum US$50; bank payouts outside the US 1%, PayPal 3% capped at US$30",
@@ -196,22 +196,22 @@
    "review_doc": "https://docs.lemonsqueezy.com/help/getting-started/activate-your-store",
    "aup": "https://docs.lemonsqueezy.com/help/getting-started/prohibited-products",
    "notes": [],
-   "warning": "On 28 January 2026 Lemon Squeezy's CEO wrote that support had slowed and product updates had thinned while the team built Stripe Managed Payments, Stripe's own merchant of record, and that the goal is an easy way for Lemon Squeezy users to migrate to it. Weigh that before you build on Lemon Squeezy.",
-   "warning_source": "https://www.lemonsqueezy.com/blog/2026-update",
+   "warning": "Lemon Squeezy stopped taking new stores on 16 November 2026 and stops processing payments on 31 March 2027. Existing sellers can move to Stripe Managed Payments with migration tooling from 2 December 2026, at a promotional 1.5% through 1 December 2027; the tooling moves to Managed Payments only, in Stripe's supported countries.",
+   "warning_source": "https://docs.lemonsqueezy.com/migration",
    "zh": {
     "fee": "5% + 50 美分；非美国买家 +1.5%，PayPal +1.5%，订阅 +0.5%。",
     "entities": {
-     "cn-individual": "只能通过 PayPal 提现到中国大陆；官方没说中国大陆能不能注册",
-     "cn-company": "同个人",
-     "hk-company": "",
-     "us-company": "",
-     "uk-company": "英国在银行出款名单上；美国以外的银行出款收 1%"
+     "cn-individual": "2026 年 11 月 16 日起不再接受新店注册，2027 年 3 月 31 日停止收款",
+     "cn-company": "2026 年 11 月 16 日起不再接受新店注册，2027 年 3 月 31 日停止收款",
+     "hk-company": "2026 年 11 月 16 日起不再接受新店注册，2027 年 3 月 31 日停止收款",
+     "us-company": "2026 年 11 月 16 日起不再接受新店注册，2027 年 3 月 31 日停止收款",
+     "uk-company": "2026 年 11 月 16 日起不再接受新店注册，2027 年 3 月 31 日停止收款"
     },
     "payout": "每月两次按美元出款，先押 13 天，最低 50 美元；美国以外银行出款收 1%，PayPal 收 3%（最高 30 美元）",
     "review_time": "2–3 个工作日",
     "chargebacks": "拒付太多会被停用；每笔争议收 15 美元",
     "notes": [],
-    "warning": "Lemon Squeezy 的 CEO 在 2026 年 1 月 28 日的官方博客里说，团队忙着做 Stripe 自己的代收税平台 Stripe Managed Payments，客服回复变慢、产品更新变少，目标是让 Lemon Squeezy 的用户能轻松迁移过去。现在新接入要考虑到这一点。"
+    "warning": "Lemon Squeezy 2026 年 11 月 16 日起不再接受新店注册，2027 年 3 月 31 日停止收款。已经在用的卖家可以迁到 Stripe Managed Payments：迁移工具 2026 年 12 月 2 日上线，迁过去的优惠费率 1.5% 到 2027 年 12 月 1 日；官方工具只迁到 Managed Payments，并且要在 Stripe 支持的国家。"
    }
   },
   "creem": {

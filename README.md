@@ -4,7 +4,7 @@
 
 Pick a payment platform you can actually open, then check your website against that platform's published review list **before** you apply.
 
-For people who sell software, SaaS, AI tools, templates, courses or e-books online, and especially for sellers in mainland China or Hong Kong: Stripe and Polar are closed to a mainland individual, and the choice comes down to PayPal.cn or a Merchant of Record (Creem, Dodo Payments, Waffo Pancake, Paddle, Lemon Squeezy, Gumroad), each with its own list of what your site must show.
+For people who sell software, SaaS, AI tools, templates, courses or e-books online, and especially for sellers in mainland China or Hong Kong: Stripe and Polar are closed to a mainland individual, and the choice comes down to PayPal.cn or a Merchant of Record (Creem, Dodo Payments, Waffo Pancake, Paddle, Gumroad; Lemon Squeezy takes no new stores since 16 November 2026), each with its own list of what your site must show.
 
 ## Quick start
 
@@ -48,12 +48,10 @@ payment-guard pick --entity cn-individual --product saas
 | Paddle | ✅ yes | ✅ allowed | ✅ | $18.50 | 0.3% (undercounted) |
 | Dodo Payments | ✅ yes | ✅ allowed | ✅ | $18.40 | 2.0% |
 | Gumroad | 🟡 likely | ✅ allowed | ✅ | $16.62 | 18.7% |
-| Lemon Squeezy | ❔ not stated | ✅ allowed | ✅ | $18.10 | 10.9% |
-
-⚠️ Lemon Squeezy: On 28 January 2026 Lemon Squeezy's CEO wrote that support had slowed and product updates had thinned while the team built Stripe Managed Payments, Stripe's own merchant of record, and that the goal is an easy way for Lemon Squeezy users to migrate to it. Weigh that before you build on Lemon Squeezy. (https://www.lemonsqueezy.com/blog/2026-update)
 
 Left out:
 - Stripe: no accounts for mainland China (https://stripe.com/global)
+- Lemon Squeezy: stopped taking new stores on 16 November 2026 and stops processing payments on 31 March 2027 (https://www.lemonsqueezy.com/blog/saying-goodbye-to-lemon-squeezy)
 - Polar: payouts go only through Stripe Connect Express, which does not reach mainland China (https://polar.sh/docs/merchant-of-record/supported-countries)
 
 ## Each platform
@@ -144,7 +142,7 @@ Which of these each platform asks for, and at what level, is in `payment-guard r
 | Waffo Pancake | ✅ | 3.9% + 50¢ | ✅ bank card or Alipay (companies are still paid as a person) | [account reviews](https://docs.waffo.ai/mor/account-reviews) |
 | Dodo Payments | ✅ | 4% + 40¢; international +1.5%, subscriptions +0.5% | ✅ since March 2026 | [verification process](https://docs.dodopayments.com/miscellaneous/verification-process) |
 | Paddle | ✅ | 5% + 50¢ | ✅ individuals and sole traders; CNY by bank wire | [domain verification](https://www.paddle.com/help/start/account-verification/what-is-domain-verification) |
-| Lemon Squeezy | ✅ | 5% + 50¢; non-US buyers +1.5%, subscriptions +0.5% | ❔ not stated; payouts through PayPal | [activate your store](https://docs.lemonsqueezy.com/help/getting-started/activate-your-store) |
+| Lemon Squeezy | ✅ | 5% + 50¢; non-US buyers +1.5%, subscriptions +0.5% | ⛔ no new stores since 16 Nov 2026; shuts down 31 Mar 2027 | [activate your store](https://docs.lemonsqueezy.com/help/getting-started/activate-your-store) |
 | Gumroad | ✅ | 10% + 50¢ plus 2.9% + 30¢ card processing | 🟡 payouts through PayPal | none: Gumroad hosts the product page |
 | Polar | ✅ | 5% + 50¢ for new organizations; international +1.5% | ⛔ | [account reviews](https://polar.sh/docs/merchant-of-record/account-reviews) |
 | Stripe | – | US account 2.9% + 30¢; international cards +1.5% | ⛔ | [website checklist](https://docs.stripe.com/get-started/checklist/website) |

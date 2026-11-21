@@ -177,7 +177,7 @@ def test_ai_text_tools_are_a_review_category_not_a_block():
 
 def test_mainland_china_rules_out_stripe_and_polar():
     result = pick.pick("cn-individual", "saas")
-    assert {r["platform"] for r in result["excluded"]} == {"stripe", "polar"}
+    assert {r["platform"] for r in result["excluded"]} == {"stripe", "polar", "lemonsqueezy"}
     assert result["rows"][0]["open"] == "yes" and all(r["open"] != "no" for r in result["rows"])
 
 
@@ -288,18 +288,20 @@ def test_the_export_holds_every_holder_and_product(capsys):
     data = json.loads(capsys.readouterr().out)
     assert len(data["picks"]) == len(data["entities"]) * len(data["products"])
     table = data["picks"]["cn-individual|saas"]
-    assert {x["platform"] for x in table["excluded"]} == {"stripe", "polar"} and table["rows"][0]["keep"] > 0
+    assert {x["platform"] for x in table["excluded"]} == {"stripe", "polar", "lemonsqueezy"} and table["rows"][0]["keep"] > 0
     assert data["platforms"]["dodo"]["opening"]["company"]["zh"]["steps"] and data["usage"]["caveat"]["zh"]
 
 
-def test_lemon_squeezy_carries_its_migration_warning(capsys):
-    hk = pick.pick("hk-company", "saas", lang="zh")
-    ls = next(r for r in hk["rows"] if r["platform"] == "lemonsqueezy")
-    assert "Stripe Managed Payments" in ls["warning"] and ls["warning_source"].endswith("/blog/2026-update")
-    assert "⚠️ Lemon Squeezy：" in report.pick(hk, "zh")
+def test_lemon_squeezy_is_closed_to_new_sellers(capsys):
+    # 2026-11-16: no new stores; payments stop on 2027-03-31 (lemonsqueezy.com/blog/saying-goodbye-to-lemon-squeezy)
+    for entity in ("cn-individual", "hk-company", "us-company", "uk-company"):
+        out = pick.pick(entity, "saas", lang="zh")
+        assert "lemonsqueezy" not in {r["platform"] for r in out["rows"]}
+        ls = next(r for r in out["excluded"] if r["platform"] == "lemonsqueezy")
+        assert "2027 年 3 月 31 日" in ls["open_note"] and ls["open_source"].endswith("/saying-goodbye-to-lemon-squeezy")
     assert cli.main(["export"]) == 0
     warning = json.loads(capsys.readouterr().out)["platforms"]["lemonsqueezy"]["warning"]
-    assert warning["en"] and warning["zh"] and warning["source"] == ls["warning_source"]
+    assert "1.5%" in warning["en"] and "1.5%" in warning["zh"] and warning["source"].endswith("/migration")
 
 
 def test_the_data_is_complete():
