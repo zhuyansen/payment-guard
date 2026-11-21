@@ -1,10 +1,11 @@
 """payment-guard on made-up pages: no network. A comment says what kind of real page taught a rule, where one did."""
 import json
 import re
+from pathlib import Path
 
 import pytest
 
-from payment_guard import DATA, __main__ as cli, check, facts, page, pick, report, site, zh
+from payment_guard import DATA, __version__, __main__ as cli, check, facts, page, pick, report, site, zh
 
 FOOTER = ('<footer><a href="/terms">Terms of Service</a> <a href="/privacy">Privacy Policy</a> <a href="/refund">Refund Policy</a>'
           ' <a href="mailto:help@acme.example">Contact</a></footer>')
@@ -318,3 +319,17 @@ def test_the_data_is_complete():
         assert set(p["entities"]) == set(plats["entities"]) == set(p["zh"]["entities"]), key
         assert all(e["status"] in pick.OPEN and e["source"].startswith("https://") for e in p["entities"].values()), key
         assert not p.get("warning") or (p["zh"].get("warning") and p["warning_source"].startswith("https://")), key
+
+
+def test_the_listings_match_the_package():
+    # Claude Code updates an installed plugin only when the plugin's version changes, and the one-line
+    # descriptions (PyPI, plugin, marketplace) must not offer a platform that nobody can open any more.
+    root = Path(__file__).resolve().parent.parent
+    toml = (root / "pyproject.toml").read_text()
+    plugin = json.loads((root / ".claude-plugin" / "plugin.json").read_text())
+    market = json.loads((root / ".claude-plugin" / "marketplace.json").read_text())["plugins"][0]
+    assert re.search(r'^version = "(.+)"', toml, re.M)[1] == plugin["version"] == market["version"] == __version__
+    blurbs = [re.search(r'^description = "(.+)"', toml, re.M)[1], plugin["description"], market["description"]]
+    closed = [p["name"] for p in json.loads((DATA / "platforms.json").read_text())["platforms"].values()
+              if all(e["status"] == "no" for e in p["entities"].values())]
+    assert not [(name, blurb) for name in closed for blurb in blurbs if name in blurb]
