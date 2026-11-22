@@ -1,6 +1,6 @@
 {
   "name": "payment-guard",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Pick a payment platform you can actually open and check your website against its published review requirements before you apply: Creem, Dodo Payments, Waffo, Paddle, Polar, Stripe, Gumroad, PayPal.",
   "author": { "name": "zhuyansen" },
   "homepage": "https://github.com/zhuyansen/payment-guard",

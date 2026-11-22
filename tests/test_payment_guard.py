@@ -282,6 +282,11 @@ def test_paypal_cn_is_for_china_accounts_only():
     assert rows["paypal"]["open"] == "yes" and rows["paypal"]["mor"] is False and rows["paypal"]["opening"]["steps"]
     hk = {r["platform"]: r for r in pick.pick("hk-company", "saas")["rows"]}
     assert hk["paypal"]["open"] == "unverified" and hk["paypal"]["opening"] == {}
+    # PayPal's user agreement, Chinese Mainland section (notice of 28 May 2026, in force 30 June 2026): a personal
+    # account opened on paypal.com after that date cannot sell, so the note says so and links the agreement itself.
+    zh = {r["platform"]: r for r in pick.pick("cn-individual", "saas", lang="zh")["rows"]}
+    assert "30 June 2026" in rows["paypal"]["open_note"] and "2026 年 6 月 30 日" in zh["paypal"]["open_note"]
+    assert rows["paypal"]["open_source"] == "https://www.paypal.com/c2/legalhub/paypal/useragreement-full"
 
 
 def test_the_export_holds_every_holder_and_product(capsys):
@@ -303,6 +308,11 @@ def test_lemon_squeezy_is_closed_to_new_sellers(capsys):
     assert cli.main(["export"]) == 0
     warning = json.loads(capsys.readouterr().out)["platforms"]["lemonsqueezy"]["warning"]
     assert "1.5%" in warning["en"] and "1.5%" in warning["zh"] and warning["source"].endswith("/migration")
+    # What moving to Managed Payments involves (docs.lemonsqueezy.com/migration and
+    # docs.stripe.com/payments/managed-payments/eligibility, read 2026-11-21): processing fees on top of the 1.5%,
+    # PayPal subscriptions stay behind, no license keys or affiliates, no mainland China business and no buyers in China.
+    assert all(w in warning["en"] for w in ("standard payment processing fees", "PayPal", "license keys", "affiliates", "not mainland China", "buyers in China"))
+    assert all(w in warning["zh"] for w in ("标准支付处理费", "PayPal", "授权码", "联盟分佣", "没有中国大陆", "中国的买家"))
 
 
 def test_the_data_is_complete():

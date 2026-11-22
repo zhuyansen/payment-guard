@@ -196,7 +196,7 @@
    "review_doc": "https://docs.lemonsqueezy.com/help/getting-started/activate-your-store",
    "aup": "https://docs.lemonsqueezy.com/help/getting-started/prohibited-products",
    "notes": [],
-   "warning": "Lemon Squeezy stopped taking new stores on 16 November 2026 and stops processing payments on 31 March 2027. Existing sellers can move to Stripe Managed Payments with migration tooling from 2 December 2026, at a promotional 1.5% through 1 December 2027; the tooling moves to Managed Payments only, in Stripe's supported countries.",
+   "warning": "Lemon Squeezy stopped taking new stores on 16 November 2026 and stops processing payments on 31 March 2027. Existing sellers can move to Stripe Managed Payments with migration tooling from 2 December 2026, at a promotional 1.5% through 1 December 2027 plus Stripe's standard payment processing fees. Subscriptions paid with PayPal can't migrate. Managed Payments doesn't deliver license keys or files, and affiliates aren't included. It takes only businesses based in Stripe's supported locations (Hong Kong, the UK and the US among them, not mainland China), and buyers in China can't purchase through it (Stripe's eligibility page).",
    "warning_source": "https://docs.lemonsqueezy.com/migration",
    "zh": {
     "fee": "5% + 50 美分；非美国买家 +1.5%，PayPal +1.5%，订阅 +0.5%。",
@@ -211,7 +211,7 @@
     "review_time": "2–3 个工作日",
     "chargebacks": "拒付太多会被停用；每笔争议收 15 美元",
     "notes": [],
-    "warning": "Lemon Squeezy 2026 年 11 月 16 日起不再接受新店注册，2027 年 3 月 31 日停止收款。已经在用的卖家可以迁到 Stripe Managed Payments：迁移工具 2026 年 12 月 2 日上线，迁过去的优惠费率 1.5% 到 2027 年 12 月 1 日；官方工具只迁到 Managed Payments，并且要在 Stripe 支持的国家。"
+    "warning": "Lemon Squeezy 2026 年 11 月 16 日起不再接受新店注册，2027 年 3 月 31 日停止收款。已经在用的卖家可以迁到 Stripe Managed Payments：迁移工具 2026 年 12 月 2 日上线，迁过去的优惠费率 1.5% 到 2027 年 12 月 1 日，另外还要付 Stripe 的标准支付处理费。用 PayPal 付款的订阅迁不过去。Managed Payments 不发授权码和下载文件，也没有联盟分佣。它只收所在地在 Stripe 支持地区的主体（有香港、英国、美国，没有中国大陆），中国的买家也买不了（见 Stripe 的资格页）。"
    }
   },
   "creem": {
@@ -537,8 +537,8 @@
    "entities": {
     "cn-individual": {
      "status": "yes",
-     "note": "PayPal.cn's personal seller account, opened with real-name verification (China residents aged 18 or over); personal accounts registered on paypal.com after 30 June 2026 cannot take payments for goods",
-     "source": "https://www.paypal.cn/portal/individual-seller"
+     "note": "PayPal.cn's personal seller account, opened with real-name verification (China residents aged 18 or over); not a personal account on paypal.com: under PayPal's user agreement, personal accounts opened in mainland China after 30 June 2026 (or a later date PayPal gives notice of) can't take payments as a seller (goods and services included), only personal payments from friends and family, and can't be converted to business accounts",
+     "source": "https://www.paypal.com/c2/legalhub/paypal/useragreement-full"
     },
     "cn-company": {
      "status": "yes",
@@ -573,7 +573,7 @@
    "zh": {
     "fee": "中国账户：收海外付款 4.40% + 0.30 美元。按人民币提现到国内银行 2026 年内 0.5% 封顶（标准 1.0%），另加手续费的 6% 增值税；电汇美元每笔 35 美元。",
     "entities": {
-     "cn-individual": "PayPal.cn 的个人卖家账户，用个人实名认证开户（中国居民、满 18 岁）；2026 年 6 月 30 日之后在 paypal.com 注册的个人账户不能收货款",
+     "cn-individual": "PayPal.cn 的个人卖家账户，用个人实名认证开户（中国居民、满 18 岁）；paypal.com 的个人账户不行：按 PayPal 用户协议，2026 年 6 月 30 日（或 PayPal 另行通知的更晚日期）之后在中国大陆注册的个人账户，除了收亲友的个人转账，不能作为卖家收款（包括商品和服务的货款），也不能改成企业账户",
      "cn-company": "PayPal.cn 的企业卖家账户，做主体认证：营业执照和法定代表人身份证明",
      "hk-company": "这个工具没读 PayPal 香港的页面",
      "us-company": "这个工具没读 PayPal 美国的页面",
